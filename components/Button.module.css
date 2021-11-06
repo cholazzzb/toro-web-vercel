@@ -1,0 +1,24 @@
+.floatingButton {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 20px;
+  right: 20px;
+  width: 90px;
+  height: 90px;
+  border: solid 0px;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.floatingIcon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.green {
+  background-color: rgb(187, 244, 195);
+}

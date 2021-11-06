@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css?family=Caveat|Righteous&display=swap");
+
+.animatedText {
+  font-family: "Righteous", cursive;
+  background: url("../public/text-animation.gif") center center no-repeat;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: cover;
+  margin: 0px;
+  color: transparent;
+}
+
+.large{
+  font-size: 30px;
+}
+
+.small{
+  font-size: 15px;
+}
