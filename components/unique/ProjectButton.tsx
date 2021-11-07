@@ -9,7 +9,7 @@ const ProjectButton = () => {
     <Link href="projects">
       <a>
         <button className={styles.projectButton}>
-          <Blink>My Projects</Blink>
+          My Projects
           <Blink>
             <ImageContainer size={20} shape="round">
               <Image

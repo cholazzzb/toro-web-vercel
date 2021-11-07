@@ -23,12 +23,10 @@ const Home: NextPage = () => {
           </ImageContainer>
         </CardHead>
         <CardBody>
-          <Typography type="large">Hi, I&apos; m Nic!</Typography>
-
+          <Typography type="animated-text">Hi, I&apos; m Nic!</Typography>
           <Typography type="small">
-            Engineering Physics{" "}
-            <Typography type="animated-text">Fresh Graduate</Typography> from
-            Bandung Institute of Technology
+            Engineering Physics Fresh Graduate from Bandung Institute of
+            Technology
           </Typography>
         </CardBody>
       </Card>

@@ -19,8 +19,8 @@ const AboutButton = () => {
               />
             </ImageContainer>
           </Blink>
-          <Blink>About</Blink>
-        </button>
+          About
+</button>
       </a>
     </Link>
   );
