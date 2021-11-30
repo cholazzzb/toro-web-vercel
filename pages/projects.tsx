@@ -1,7 +1,8 @@
-import { FloatingButton } from "components/Button";
-import Navigation from "components/Navigation";
 import { NextPage } from "next";
 import { useState } from "react";
+import { FloatingButton } from "components/Button";
+import { Layout } from "components/Layout";
+import Navigation from "components/Navigation";
 
 const Projects: NextPage = () => {
   const [navigationOpen, setNavigationOpen] = useState<boolean>(false);
@@ -13,14 +14,14 @@ const Projects: NextPage = () => {
   };
 
   return (
-    <div>
+    <Layout>
       <FloatingButton
         color="green"
         onClick={handleOpenNavigation}
-        iconSrc="/navigation.svg"
+        iconSrc="/icons/navigation.svg"
       />
       {navigationOpen && <Navigation />}
-    </div>
+    </Layout>
   );
 };
 

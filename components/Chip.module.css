@@ -1,0 +1,36 @@
+.chip {
+  display: inline-block;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  line-height: 32px;
+  padding: 0 12px;
+  border-radius: 16px;
+  background-color: #e0e0e0;
+  margin-bottom: 8px;
+}
+
+.white{
+  background-color: #fff;
+}
+
+.black {
+  background-color: #000;
+}
+
+.blue {
+  background-color: #00bcd4;
+}
+
+.pink {
+  background-color: hotpink;
+}
+
+.green {
+  background-color: greenyellow;
+}
+
+.yellow {
+  background-color: yellow;
+}

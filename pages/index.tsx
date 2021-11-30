@@ -3,8 +3,8 @@ import Image from "next/image";
 import { Layout } from "components/Layout";
 import { Card, CardHead, CardBody } from "components/Card";
 import ImageContainer from "components/ImageContainer";
-import AboutButton from "components/unique/AboutButton";
-import ProjectButton from "components/unique/ProjectButton";
+import AboutButton from "components/home/AboutButton";
+import ProjectButton from "components/home/ProjectButton";
 import Typography from "components/Typography";
 
 const Home: NextPage = () => {
@@ -14,7 +14,7 @@ const Home: NextPage = () => {
         <CardHead>
           <ImageContainer size={200} shape="round">
             <Image
-              src="/profile.png"
+              src="/images/profile.png"
               alt="profile"
               layout="fill"
               objectFit="cover"

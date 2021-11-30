@@ -6,13 +6,13 @@ import { Blink } from "components/Animation";
 
 const AboutButton = () => {
   return (
-    <Link href="about">
+    <Link href="/about">
       <a>
         <button className={styles.aboutButton}>
           <Blink>
             <ImageContainer size={20} shape="round">
               <Image
-                src="/left.svg"
+                src="/icons/left.svg"
                 alt="icon-button"
                 layout="fill"
                 objectFit="cover"
@@ -20,7 +20,7 @@ const AboutButton = () => {
             </ImageContainer>
           </Blink>
           About
-</button>
+        </button>
       </a>
     </Link>
   );

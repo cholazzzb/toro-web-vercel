@@ -19,6 +19,50 @@
   height: 20px;
 }
 
+.iconButton {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border: solid 0px;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.small {
+  width: 30px;
+  height: 30px;
+}
+.medium {
+  width: 40px;
+  height: 40px;
+}
+.large {
+  width: 50px;
+  height: 50px;
+}
+
+.transparent {
+  background-color: rgba(0, 0, 0, 0);
+}
+.white {
+  background-color: white;
+}
+.gray {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.red {
+  background-color: rgb(225, 64, 53);
+}
+.yellow {
+  background-color: rgb(189, 162, 50);
+}
 .green {
-  background-color: rgb(187, 244, 195);
+  background-color: rgb(68, 164, 131);
+}
+.blue {
+  background-color: rgb(46, 89, 169);
+}
+
+.iconButton:hover {
+  background-color: rgba(255, 255, 255, 0.8);
 }

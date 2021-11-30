@@ -2,7 +2,7 @@
 
 .animatedText {
   font-family: "Righteous", cursive;
-  background: url("../public/text-animation.gif") center center no-repeat;
+  background: url("../public/images/text-animation.gif") center center no-repeat;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: cover;
@@ -17,4 +17,6 @@
 
 .small{
   font-size: 15px;
+  display: flex;
+  align-items: center;
 }

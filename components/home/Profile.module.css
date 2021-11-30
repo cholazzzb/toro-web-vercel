@@ -1,0 +1,15 @@
+.profile {
+  margin-left: 10px;
+}
+
+.name {
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+}
+
+.role {
+  line-height: 5px;
+  font-size: 12px;
+  color: #999;
+}

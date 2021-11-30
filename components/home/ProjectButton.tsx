@@ -6,14 +6,14 @@ import { Blink } from "components/Animation";
 
 const ProjectButton = () => {
   return (
-    <Link href="projects">
+    <Link href="/projects">
       <a>
         <button className={styles.projectButton}>
           My Projects
           <Blink>
             <ImageContainer size={20} shape="round">
               <Image
-                src="/right.svg"
+                src="/icons/right.svg"
                 alt="icon-button"
                 layout="fill"
                 objectFit="cover"

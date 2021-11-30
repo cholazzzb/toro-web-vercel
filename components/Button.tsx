@@ -37,3 +37,33 @@ export const FloatingButton = ({
     </button>
   );
 };
+
+type IconButtonProps = {
+  color?: string;
+  size?: "small" | "medium" | "large";
+  iconSrc: string;
+  onClick?: () => void;
+};
+export const IconButton = ({
+  color = "white",
+  size = "small",
+  onClick,
+  iconSrc,
+}: IconButtonProps) => {
+  const sizeVal = size === "small" ? 25 : size === "medium" ? 35 : 45;
+
+  return (
+    <button
+      onClick={onClick}
+      className={`${styles.iconButton} ${styles[color]} ${styles[size]}`}
+    >
+      <Image
+        src={iconSrc}
+        alt="icon-button"
+        objectFit="cover"
+        height={sizeVal}
+        width={sizeVal}
+      />
+    </button>
+  );
+};

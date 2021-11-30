@@ -2,11 +2,11 @@ import { ReactNode } from "react";
 import styles from "./Typography.module.css";
 
 type TypographyProps = {
-  type: string;
+  type?: string;
   children: ReactNode;
 };
 
-const Typography = ({ type, children }: TypographyProps) => {
+const Typography = ({ type="small", children }: TypographyProps) => {
   let textStyle;
   switch (type) {
     case "animated-text":

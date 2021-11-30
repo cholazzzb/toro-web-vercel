@@ -11,11 +11,13 @@ export const Layout = ({ children }: LayoutProps) => {
     <div className={styles.background}>
       <Head>
         <title>Toro-web</title>
-        <meta name="description" content="Nicholas Biantoro's Personal Portfolio" />
+        <meta
+          name="description"
+          content="Nicholas Biantoro's Personal Portfolio"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>{children}</main>
       <div className={styles.movingObject}>
         <ul className={styles.circles}>
           <li></li>
@@ -30,6 +32,7 @@ export const Layout = ({ children }: LayoutProps) => {
           <li></li>
         </ul>
       </div>
+      <main className={styles.main}>{children}</main>
     </div>
   );
 };

@@ -1,6 +1,4 @@
 .background {
-  padding: 0 2rem;
-  background-color: rgb(75, 82, 145);
   background-size: 400% 400%;
   animation: gradientBG 15s ease infinite;
 }
@@ -17,16 +15,10 @@
   }
 }
 
-.container {
-  width: 100%;
-  position: absolute;
-  top: 35%;
-  text-align: center;
-}
-
 .main {
   z-index: 1;
-  position: relative;
+  position: absolute;
+  width: 100vw;
   min-height: 100vh;
   padding: 4rem 0;
   flex: 1;
@@ -41,7 +33,8 @@
 }
 
 .circles {
-  position: absolute;
+  z-index: 0;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
