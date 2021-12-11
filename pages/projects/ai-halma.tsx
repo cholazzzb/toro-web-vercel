@@ -1,45 +1,25 @@
-import { useState } from "react";
+// UI
+import { useEffect, useState } from "react";
 import { Layout } from "components/Layout";
 import Board from "components/projects/ai-halma/Board";
 import Player from "components/projects/ai-halma/Player";
 
-// 2 players
-const initialBoard: number[][] = [
-  [1, 1, 1, 1, 0, 0, 0, 0, 0, 0],
-  [1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
-  [1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-  [0, 0, 0, 0, 0, 0, 0, 0, 2, 2],
-  [0, 0, 0, 0, 0, 0, 0, 2, 2, 2],
-  [0, 0, 0, 0, 0, 0, 2, 2, 2, 2],
-];
-// 4 players
-// const initialBoard: number[][] = [
-//   [1, 1, 1, 1, 0, 0, 3, 3, 3, 3],
-//   [1, 1, 1, 0, 0, 0, 0, 3, 3, 3],
-//   [1, 1, 0, 0, 0, 0, 0, 0, 3, 3],
-//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 3],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [4, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-//   [4, 4, 0, 0, 0, 0, 0, 0, 2, 2],
-//   [4, 4, 4, 0, 0, 0, 0, 2, 2, 2],
-//   [4, 4, 4, 4, 0, 0, 2, 2, 2, 2],
-// ];
 
-enum EGameState {
-  PLAYING = "PLAYING",
-  PAUSE = "PAUSE",
-}
+// Logic
+import { EGameState, initBoard4Players } from "components/projects/ai-halma/constant";
 
 const players: string[] = ["Human", "Halmiezzz", "RL"];
 
 const AIHalma = () => {
-  const [board, setBoard] = useState<number[][]>(initialBoard);
+  const [board, setBoard] = useState<number[][]>(initBoard4Players);
   const [gameState, setGameState] = useState<string>(EGameState.PAUSE);
+  const toggleGameState = () => {
+    if (gameState === EGameState.PAUSE) {
+      setGameState(EGameState.PLAYING);
+    } else {
+      setGameState(EGameState.PAUSE);
+    }
+  };
 
   const [player1, setPlayer1] = useState<string>(players[0]);
   const handlePlayer1Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -60,6 +40,15 @@ const AIHalma = () => {
     });
   };
 
+  useEffect(() => {
+    if (gameState === EGameState.PLAYING) {
+      const interval = setInterval(() => {
+        movePiece([0, 0], [5, 5]);
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [gameState]);
+
   return (
     <Layout>
       <Player
@@ -73,13 +62,7 @@ const AIHalma = () => {
         player={player2}
         onPlayerChange={handlePlayer2Change}
       />
-      <button
-        onClick={() => {
-          movePiece([0, 0], [5, 5]);
-        }}
-      >
-        Start
-      </button>
+      <button onClick={toggleGameState}>Start</button>
     </Layout>
   );
 };
