@@ -4,20 +4,20 @@ import { Layout } from "components/Layout";
 import Board from "components/projects/ai-halma/Board";
 import Player from "components/projects/ai-halma/Player";
 
-
 // Logic
-import { EGameState, initBoard4Players } from "components/projects/ai-halma/constant";
+import { CInitBoard4Players } from "components/projects/ai-halma/constants";
+import { EGameState } from "components/projects/ai-halma/@enum";
 
 const players: string[] = ["Human", "Halmiezzz", "RL"];
 
 const AIHalma = () => {
-  const [board, setBoard] = useState<number[][]>(initBoard4Players);
-  const [gameState, setGameState] = useState<string>(EGameState.PAUSE);
+  const [board, setBoard] = useState<number[][]>(CInitBoard4Players);
+  const [gameState, setGameState] = useState<EGameState>(EGameState.PAUSED);
   const toggleGameState = () => {
-    if (gameState === EGameState.PAUSE) {
+    if (gameState === EGameState.PAUSED) {
       setGameState(EGameState.PLAYING);
     } else {
-      setGameState(EGameState.PAUSE);
+      setGameState(EGameState.PAUSED);
     }
   };
 
@@ -62,7 +62,7 @@ const AIHalma = () => {
         player={player2}
         onPlayerChange={handlePlayer2Change}
       />
-      <button onClick={toggleGameState}>Start</button>
+      <button onClick={toggleGameState}>Start/Pause</button>
     </Layout>
   );
 };

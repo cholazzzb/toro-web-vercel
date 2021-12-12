@@ -1,4 +1,4 @@
-export const EEmptyBoard: number[][] = [
+export const CEmptyBoard: IBoard = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -11,14 +11,7 @@ export const EEmptyBoard: number[][] = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
 
-interface IPosition {
-  1: number[][];
-  2: number[][];
-  3: number[][];
-  4: number[][];
-}
-
-export const EStartPosition: IPosition = {
+export const CStartPosition: IPiecesPosition = {
   1: [
     [0, 0],
     [0, 1],
@@ -69,42 +62,48 @@ export const EStartPosition: IPosition = {
   ],
 };
 
-export const EEndPosition: IPosition = {
-  1: EStartPosition[2],
-  2: EStartPosition[1],
-  3: EStartPosition[4],
-  4: EStartPosition[3],
+export const CEndPosition: IPiecesPosition = {
+  1: CStartPosition[2],
+  2: CStartPosition[1],
+  3: CStartPosition[4],
+  4: CStartPosition[3],
 };
 
-export const initBoard2Players = (): number[][] => {
-  const board = EEmptyBoard.map((row) => [...row]);
-  EStartPosition[1].forEach((position) => {
+export const CInitBoard2Players = (): IBoard => {
+  const board: IBoard = CEmptyBoard.map((row) => [...row]);
+  CStartPosition[1].forEach((position) => {
     board[position[0]][position[1]] = 1;
   });
-  EStartPosition[2].forEach((position) => {
+  CStartPosition[2].forEach((position) => {
     board[position[0]][position[1]] = 2;
   });
   return board;
 };
 
-export const initBoard4Players = (): number[][] => {
-  const board = EEmptyBoard.map((row) => [...row]);
-  EStartPosition[1].forEach((position) => {
+export const CInitBoard4Players = (): IBoard => {
+  const board: IBoard = CEmptyBoard.map((row) => [...row]);
+  CStartPosition[1].forEach((position) => {
     board[position[0]][position[1]] = 1;
   });
-  EStartPosition[2].forEach((position) => {
+  CStartPosition[2].forEach((position) => {
     board[position[0]][position[1]] = 2;
   });
-  EStartPosition[3].forEach((position) => {
+  CStartPosition[3].forEach((position) => {
     board[position[0]][position[1]] = 3;
   });
-  EStartPosition[4].forEach((position) => {
+  CStartPosition[4].forEach((position) => {
     board[position[0]][position[1]] = 4;
   });
   return board;
 };
 
-export enum EGameState {
-  PLAYING = "PLAYING",
-  PAUSE = "PAUSE",
-}
+export const CHeading: ICHeading = {
+  up: [-1, 0],
+  down: [1, 0],
+  left: [0, -1],
+  right: [0, 1],
+  upLeft: [-1, -1],
+  upRight: [-1, 1],
+  downLeft: [1, -1],
+  downRight: [1, 1],
+};
