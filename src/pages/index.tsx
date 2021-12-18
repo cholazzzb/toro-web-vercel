@@ -6,6 +6,7 @@ import ImageContainer from "components/ImageContainer";
 import AboutButton from "components/home/AboutButton";
 import ProjectButton from "components/home/ProjectButton";
 import Typography from "components/Typography";
+import { IconButton } from "src/uikit/components/Button";
 
 const Home: NextPage = () => {
   return (
@@ -31,6 +32,7 @@ const Home: NextPage = () => {
         </CardBody>
       </Card>
       <AboutButton /> <ProjectButton />
+      <IconButton iconSrc="/icons/right.svg" />
     </Layout>
   );
 };
