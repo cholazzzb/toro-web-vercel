@@ -7,16 +7,16 @@ describe('test getAllPiecePos function', () => {
         initBoard = CInitBoard4Players()
     })
     it("should return ", () => {
-        expect(getAllPiecePos(initBoard, 1)).toEqual(CStartPosition[1])
+        expect(getAllPiecePos(initBoard, 1, 10).sort()).toEqual(CStartPosition[1].sort());
     })
     it("should return ", () => {
-        expect(getAllPiecePos(initBoard, 2)).toEqual(CStartPosition[2])
+        expect(getAllPiecePos(initBoard, 2, 10).sort()).toEqual(CStartPosition[2].sort());
     })
     it("should return ", () => {
-        expect(getAllPiecePos(initBoard, 3)).toEqual(CStartPosition[3])
+        expect(getAllPiecePos(initBoard, 3, 10).sort()).toEqual(CStartPosition[3].sort());
     })
     it("should return ", () => {
-        expect(getAllPiecePos(initBoard, 4)).toEqual(CStartPosition[4])
+        expect(getAllPiecePos(initBoard, 4, 10).sort()).toEqual(CStartPosition[4].sort());
     })
 })
 
