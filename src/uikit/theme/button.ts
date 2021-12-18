@@ -1,11 +1,10 @@
 const buttonTheme = {
     variants: {
         icon: {
-            width: { px: 30 },
-            height: { px: 30 },
+            bg: "white",
+            borderRadius: "50%",
         },
-    }
-
+    },
 }
 
 export default buttonTheme;

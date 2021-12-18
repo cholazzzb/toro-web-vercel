@@ -3,8 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { Layout } from "components/Layout";
-import { IconButton } from "components/Button";
-import HomeButton from "components/about/HomeButton"
+import { IconButton } from "src/uikit/components/Button";
+import HomeButton from "components/about/HomeButton";
 import { Card, CardHead, RowCard } from "components/Card";
 import {
   HorizontalCollection,
@@ -41,48 +41,54 @@ const About = () => {
           <Profile />
         </CardHead>
 
-        <VerticalCollection itemHeight={70}>
+        <VerticalCollection itemHeight={80}>
           <RowCard>
             <CardHead justify="justifyBetween">
-              <IconButton iconSrc="/icons/work.svg" color="green" />
+              <IconButton iconSrc="/icons/work.svg" bgColor="green.500" />
               <Typography>Experiences</Typography>
               <IconButton
                 onClick={openExpModal}
                 iconSrc="/icons/right.svg"
-                color="gray"
+                bgColor="transparent"
               />
             </CardHead>
           </RowCard>
           <RowCard>
             <CardHead justify="justifyBetween">
-              <IconButton iconSrc="/icons/brain.svg" color="red" />
+              <IconButton iconSrc="/icons/brain.svg" bgColor="red.500" />
               <Typography>Projects</Typography>
               <Link href="/projects">
                 <a>
-                  <IconButton iconSrc="/icons/right.svg" color="gray" />
+                  <IconButton
+                    iconSrc="/icons/right.svg"
+                    bgColor="transparent"
+                  />
                 </a>
               </Link>
             </CardHead>
           </RowCard>
           <RowCard>
             <CardHead justify="justifyBetween">
-              <IconButton iconSrc="/icons/publication.svg" color="yellow" />
+              <IconButton
+                iconSrc="/icons/publication.svg"
+                bgColor="yellow.500"
+              />
               <Typography>Publications</Typography>
               <IconButton
                 onClick={openPubModal}
                 iconSrc="/icons/right.svg"
-                color="gray"
+                bgColor="transparent"
               />
             </CardHead>
           </RowCard>
           <RowCard>
             <CardHead justify="justifyBetween">
-              <IconButton iconSrc="/icons/trophy.svg" color="blue" />
+              <IconButton iconSrc="/icons/trophy.svg" bgColor="blue.500" />
               <Typography>Accomplishments</Typography>
               <IconButton
                 onClick={openAccompModal}
                 iconSrc="/icons/right.svg"
-                color="gray"
+                bgColor="transparent"
               />
             </CardHead>
           </RowCard>

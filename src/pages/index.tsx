@@ -32,7 +32,6 @@ const Home: NextPage = () => {
         </CardBody>
       </Card>
       <AboutButton /> <ProjectButton />
-      <IconButton iconSrc="/icons/right.svg" />
     </Layout>
   );
 };

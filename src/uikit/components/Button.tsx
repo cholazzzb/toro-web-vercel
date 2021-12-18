@@ -1,24 +1,15 @@
-import { Button, ButtonProps } from "@chakra-ui/react";
-import Image from "next/image";
+import { Button, ButtonProps, Image } from "@chakra-ui/react";
 
 interface IconButtonProps extends ButtonProps {
-  size?: "small" | "medium" | "large";
   iconSrc: string;
 }
 
 export const IconButton = (props: IconButtonProps) => {
-  const { iconSrc, size } = props;
-  const sizeVal = size === "small" ? 25 : size === "medium" ? 35 : 45;
+  const { iconSrc } = props;
 
   return (
-    <Button variant="icon" {...props}>
-      <Image
-        src={iconSrc}
-        alt="icon-button"
-        objectFit="cover"
-        height={sizeVal}
-        width={sizeVal}
-      />
+    <Button variant="icon" w="50" h="50" {...props}>
+      <Image src={iconSrc} alt="icon-button" layout="fill" boxSize="20px" />
     </Button>
   );
 };

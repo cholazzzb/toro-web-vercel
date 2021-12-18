@@ -1,3 +1,4 @@
+import { Box } from "@chakra-ui/react";
 import { Children, ReactNode } from "react";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { FixedSizeList as List } from "react-window";
@@ -10,12 +11,12 @@ type VerticalCollectionProps = {
 
 export const VerticalCollection = ({
   children,
-  itemHeight = 90,
+  itemHeight = 70,
 }: VerticalCollectionProps) => {
   const arrOfChildren = Children.toArray(children);
 
   return (
-    <div className={styles.verticalCollection}>
+    <Box position="relative" width="100%" height="200px" bg="black.10">
       <AutoSizer>
         {({ height, width }) => (
           <List
@@ -34,7 +35,7 @@ export const VerticalCollection = ({
           </List>
         )}
       </AutoSizer>
-    </div>
+    </Box>
   );
 };
 
@@ -45,7 +46,7 @@ type HorizontalCollectionProps = {
 
 export const HorizontalCollection = ({
   children,
-  itemWidth = 50,
+  itemWidth = 70,
 }: HorizontalCollectionProps) => {
   const arrOfChildren = Children.toArray(children);
 
