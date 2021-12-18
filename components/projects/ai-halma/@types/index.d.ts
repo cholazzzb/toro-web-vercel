@@ -3,17 +3,12 @@ type IYPos = number;
 
 type IMove = [IYPos, IXPos];
 
-enum EMoveType {
-  STEP,
-  JUMP,
-}
-
 type IPosition = [IYPos, IXPos];
 
 interface IPieceMove {
   moves: IMove[];
   initPos: IPosition;
-  moveType: EMoveType;
+  moveType: number;
 }
 
 type IBoard = number[][];
