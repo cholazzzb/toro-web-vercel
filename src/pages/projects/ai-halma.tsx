@@ -8,6 +8,10 @@ import Player from "components/projects/ai-halma/Player";
 import { CInitBoard4Players } from "components/projects/ai-halma/constants";
 import { EGameState } from "components/projects/ai-halma/@enum";
 
+// AI
+import halmiezzz from "components/projects/ai-halma/ai/halmiezzz";
+import { Button } from "@chakra-ui/react";
+
 const players: string[] = ["Human", "Halmiezzz", "RL"];
 
 const AIHalma = () => {
@@ -63,6 +67,7 @@ const AIHalma = () => {
         onPlayerChange={handlePlayer2Change}
       />
       <button onClick={toggleGameState}>Start/Pause</button>
+      <Button onClick={() => halmiezzz(board, 1)}>Run AI</Button>
     </Layout>
   );
 };

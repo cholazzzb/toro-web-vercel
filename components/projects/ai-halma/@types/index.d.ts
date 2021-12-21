@@ -34,3 +34,8 @@ interface ICHeading {
   downLeft: IHeading;
   downRight: IHeading;
 }
+
+type IAIOutput = {
+  moves: IMove[],
+  initPos: IPosition
+}
