@@ -21,11 +21,13 @@ export const isValidMove = (board: IBoard, move: IPieceMove): boolean => {
     case EMoveType.STEP:
       const disVec = calcDisVec(moves[0], initPos);
 
-      return (disVec[0] === 1 || disVec[0] === 0) &&
+      return (
+        (disVec[0] === 1 || disVec[0] === 0) &&
         (disVec[1] === 1 || disVec[1] === 0) &&
         isInsideBoard(moves[0], 10) &&
         !isSquareEmpty(board, initPos) &&
         isSquareEmpty(board, moves[0])
+      );
 
     case EMoveType.JUMP:
       let moveIdx = 0;
@@ -54,9 +56,16 @@ export const isValidMove = (board: IBoard, move: IPieceMove): boolean => {
   }
 };
 
-export const movePiece = (board: IBoard, move: IMove, initPos: IPosition): IBoard => {
+export const movePiece = (
+  board: IBoard,
+  move: IMove,
+  initPos: IPosition
+): IBoard => {
   const newBoard = board.map((row) => [...row]);
-  [newBoard[initPos[0]][initPos[1]], newBoard[move[0]][move[1]]] = [newBoard[move[0]][move[1]], newBoard[initPos[0]][initPos[1]]]
+  [newBoard[initPos[0]][initPos[1]], newBoard[move[0]][move[1]]] = [
+    newBoard[move[0]][move[1]],
+    newBoard[initPos[0]][initPos[1]],
+  ];
 
   return newBoard;
 };

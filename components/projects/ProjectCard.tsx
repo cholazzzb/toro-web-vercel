@@ -1,9 +1,5 @@
 const ProjectCard = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+  return <div></div>;
+};
 
-export default ProjectCard
+export default ProjectCard;

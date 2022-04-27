@@ -24,18 +24,19 @@ interface IPiecesPosition {
 
 type IHeading = [-1 | 0 | 1, -1 | 0 | 1];
 
-interface ICHeading {
-  up: IHeading;
-  down: IHeading;
-  left: IHeading;
-  right: IHeading;
-  upLeft: IHeading;
-  upRight: IHeading;
-  downLeft: IHeading;
-  downRight: IHeading;
-}
+type ICHeadingKey =
+  | "up"
+  | "down"
+  | "left"
+  | "right"
+  | "upLeft"
+  | "upRight"
+  | "downLeft"
+  | "downRight";
+
+type ICHeading = Record<ICHeadingKey, IHeading>;
 
 type IAIOutput = {
-  moves: IMove[],
-  initPos: IPosition
-}
+  moves: IMove[];
+  initPos: IPosition;
+};

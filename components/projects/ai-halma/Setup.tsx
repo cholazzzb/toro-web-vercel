@@ -1,9 +1,5 @@
 const Setup = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+  return <div></div>;
+};
 
-export default Setup
+export default Setup;

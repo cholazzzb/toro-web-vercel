@@ -11,6 +11,12 @@ export const CEmptyBoard: IBoard = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
 
+/**
+ * 1 -> Red (Top Left)
+ * 2 -> Yellow (Bottom Right)
+ * 3 -> Greeen (Top Right)
+ * 4 -> Blue (Bottom Left)
+ */
 export const CStartPosition: IPiecesPosition = {
   1: [
     [0, 0],
