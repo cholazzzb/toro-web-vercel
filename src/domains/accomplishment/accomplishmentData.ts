@@ -1,4 +1,6 @@
-const accompData: AccompData[] = [
+import { Accomplishment } from "./accomplishmentEntity";
+
+const accompData: Array<Accomplishment> = [
   {
     icon: "/icons/compfest.jpg",
     title:

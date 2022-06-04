@@ -1,9 +1,10 @@
 import { RowCard } from "components/Card";
 import Divider from "components/Divider";
+import { Publication } from "src/domains/publication/publicationEntity";
 import styles from "./PubCard.module.css";
 
 type PubCardProps = {
-  data: PubData;
+  data: Publication;
 };
 
 const PubCard = ({ data }: PubCardProps) => {

@@ -6,9 +6,10 @@ import { IconButton } from "components/Button";
 
 import styles from "./AccompCard.module.css";
 import Divider from "components/Divider";
+import { Accomplishment } from "src/domains/accomplishment/accomplishmentEntity";
 
 type AccompCardProps = {
-  data: AccompData;
+  data: Accomplishment;
 };
 
 const AccompCard = ({ data }: AccompCardProps) => {

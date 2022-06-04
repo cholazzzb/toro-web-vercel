@@ -4,9 +4,10 @@ import { CardHead, ColCard, RowCard } from "components/Card";
 import Divider from "components/Divider";
 import Typography from "components/Typography";
 import styles from "./ExpCard.module.css";
+import { Experience } from "src/domains/experience/experienceEntity";
 
 type ExpCardProps = {
-  data: ExpData;
+  data: Experience;
 };
 
 const ExpCard = ({ data }: ExpCardProps) => {

@@ -1,4 +1,4 @@
-interface AccompData {
+export type Accomplishment = {
   icon: string;
   title: string;
   time: string;
@@ -6,4 +6,4 @@ interface AccompData {
   description: string[];
   link: string;
   attachments: string[];
-}
+};

@@ -1,4 +1,4 @@
-interface ExpData {
+export type Experience = {
   icon: string;
   role: string;
   time: string;
@@ -6,4 +6,4 @@ interface ExpData {
   tasks: string[];
   techs: string;
   attachments: string[];
-}
+};

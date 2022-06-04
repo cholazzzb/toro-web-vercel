@@ -1,7 +1,7 @@
 import { Modal, ModalBody, ModalHeader } from "components/Modal";
 import Typography from "components/Typography";
 
-import accompData from "datas/accompData";
+import accompData from "src/domains/accomplishment/accomplishmentData";
 import AccompCard from "./AccompCard";
 
 type AccompModalProps = {

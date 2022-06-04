@@ -1,4 +1,6 @@
-const expData: ExpData[] = [
+import { Experience } from "./experienceEntity";
+
+const expData: Array<Experience> = [
   {
     icon: "/icons/itb.png",
     role: "Web Development Intern",
