@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { IconButton } from "../uikit/components/Button";
+import { IconButton } from "../components/Button";
 
 export default {
   title: "components/IconButton",

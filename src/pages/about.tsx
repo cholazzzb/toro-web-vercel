@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { Layout } from "components/Layout";
-import { IconButton } from "src/uikit/components/Button";
+import { IconButton } from "src/components/Button";
 import HomeButton from "components/about/HomeButton";
 import { Card, CardHead, RowCard } from "components/Card";
 import {
