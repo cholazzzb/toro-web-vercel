@@ -1,12 +1,13 @@
 import Square from "./Square";
 
 import styles from "./Board.module.css";
+import { Board } from "src/domains/projects/ai-halma/AIHalmaEntity";
 
-type BoardProps = {
-  boardData: number[][];
+type BoardGameProps = {
+  boardData: Board;
 };
 
-const Board = ({ boardData }: BoardProps) => {
+const BoardGame = ({ boardData }: BoardGameProps) => {
   return (
     <div className={styles.board}>
       {boardData.map((row, rowIdx) => (
@@ -22,4 +23,4 @@ const Board = ({ boardData }: BoardProps) => {
   );
 };
 
-export default Board;
+export default BoardGame;

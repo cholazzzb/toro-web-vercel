@@ -1,29 +1,42 @@
 // UI
-import { useEffect, useState } from "react";
 import { Layout } from "components/Layout";
-import Board from "components/projects/ai-halma/Board";
 import Player from "components/projects/ai-halma/Player";
+import { useEffect, useRef, useState } from "react";
 
 // Logic
-import { CInitBoard4Players } from "components/projects/ai-halma/constants";
 import { EGameState } from "components/projects/ai-halma/@enum";
 
 // AI
-import halmiezzz from "components/projects/ai-halma/ai/halmiezzz";
 import { Button } from "@chakra-ui/react";
+import BoardGame from "components/projects/ai-halma/BoardGame";
+import {
+  Board,
+  MoveQueue,
+  Position,
+  Square
+} from "src/domains/projects/ai-halma/AIHalmaEntity";
+import { getBestMove } from "src/domains/projects/ai-halma/AIHalmaLogic";
+import { initialBoard } from "src/domains/projects/ai-halma/gameSetting";
 
 const players: string[] = ["Human", "Halmiezzz", "RL"];
 
 const AIHalma = () => {
-  const [board, setBoard] = useState<number[][]>(CInitBoard4Players);
+  const [board, setBoard] = useState<Board>(initialBoard.twoPlayer);
   const [gameState, setGameState] = useState<EGameState>(EGameState.PAUSED);
   const toggleGameState = () => {
-    if (gameState === EGameState.PAUSED) {
-      setGameState(EGameState.PLAYING);
-    } else {
-      setGameState(EGameState.PAUSED);
+    switch (gameState) {
+      case EGameState.PAUSED:
+        setGameState(EGameState.PLAYING);
+        break;
+
+      case EGameState.PLAYING:
+        setGameState(EGameState.PAUSED);
+        break;
     }
   };
+  const [turn, setTurn] = useState<Square.Player1 | Square.Player2>(
+    Square.Player1
+  );
 
   const [player1, setPlayer1] = useState<string>(players[0]);
   const handlePlayer1Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -34,24 +47,77 @@ const AIHalma = () => {
     setPlayer2(e.target.value);
   };
 
-  const movePiece = (initPos: number[], newPos: number[]) => {
+  const movePiece = (initPos: Position, newPos: Position) => {
     setBoard((board) => {
-      const newBoard = [...board];
-      const piece = newBoard[initPos[0]][initPos[1]];
-      newBoard[newPos[0]][newPos[1]] = piece;
-      newBoard[initPos[0]][initPos[1]] = 0;
+      const newBoard = board.map((rows) => rows.map((col) => col));
+      const piece = newBoard[initPos.y][initPos.x];
+      newBoard[newPos.y][newPos.x] = piece;
+      newBoard[initPos.y][initPos.x] = 0;
       return newBoard;
     });
   };
 
-  useEffect(() => {
-    if (gameState === EGameState.PLAYING) {
-      const interval = setInterval(() => {
-        movePiece([0, 0], [5, 5]);
-      }, 1000);
-      return () => clearInterval(interval);
+  const [movesQueue, setMovesQueue] = useState<Array<MoveQueue>>([]);
+  const timer = useRef<NodeJS.Timeout>();
+
+  const aiThink = () => {
+    if (movesQueue.length > 0) {
+      const newQueue = [...movesQueue];
+      const move = newQueue.shift();
+      move && movePiece(move.startPos, move.endPos);
+      setMovesQueue(newQueue);
+    } else {
+      const bestMove = getBestMove(board, turn);
+      const moveQueue: Array<MoveQueue> = [
+        {
+          startPos: bestMove.startPosition,
+          endPos: bestMove.sequence[0],
+        },
+      ];
+      for (let idx = 1; idx < bestMove.sequence.length; idx++) {
+        moveQueue.push({
+          startPos: bestMove.sequence[idx - 1],
+          endPos: bestMove.sequence[idx],
+        });
+      }
+      setMovesQueue(moveQueue);
+      switch (turn) {
+        case Square.Player1:
+          setTurn(Square.Player2);
+          break;
+        case Square.Player2:
+          setTurn(Square.Player1);
+          break;
+      }
     }
-  }, [gameState]);
+
+  };
+
+  useEffect(() => {
+    switch(gameState){
+      case EGameState.PLAYING:{
+        timer.current = setTimeout(() => {
+          aiThink();
+        }, 1000);
+        break;
+      }
+
+      case EGameState.PAUSED: {
+        break;
+      }
+
+      case EGameState.FINISHED: {
+        break
+      }
+    }
+
+    return () => {
+      if (timer.current) {
+        clearTimeout(timer.current);
+      }
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gameState, movesQueue]);
 
   return (
     <Layout>
@@ -60,14 +126,13 @@ const AIHalma = () => {
         player={player1}
         onPlayerChange={handlePlayer1Change}
       />
-      <Board boardData={board}></Board>
+      <BoardGame boardData={board}></BoardGame>
       <Player
         playerNumber={2}
         player={player2}
         onPlayerChange={handlePlayer2Change}
       />
-      <button onClick={toggleGameState}>Start/Pause</button>
-      <Button onClick={() => halmiezzz(board, 1)}>Run AI</Button>
+      <Button variant="primary" onClick={toggleGameState}>Start/Pause</Button>
     </Layout>
   );
 };
