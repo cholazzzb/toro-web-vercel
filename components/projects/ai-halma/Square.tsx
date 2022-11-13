@@ -1,26 +1,58 @@
 import { memo } from "react";
-import styles from "./Square.module.css";
+import { mainTheme } from "src/theme";
 
 type SquareProps = {
   piece: number;
 };
 
 const Square = memo(({ piece }: SquareProps) => {
-  const squareStyles = [
-    styles.empty,
-    styles.red,
-    styles.yellow,
-    styles.green,
-    styles.blue,
-  ];
 
   return (
-    <div className={styles.square}>
-      <span className={`${styles.piece} ${squareStyles[piece]}`}></span>
-    </div>
+    <SquareContainer>
+      <PieceContainer piece={piece} />
+    </SquareContainer>
   );
 });
 
 Square.displayName = "Square";
 
 export default Square;
+
+const SquareContainer = mainTheme.styled("div", {
+  display: "flex",
+  border: "solid 1px",
+  borderColor: "$white10",
+  width: "20px",
+  height: "20px",
+  justifyContent: "center",
+  alignItems: "center",
+});
+
+const PieceContainer = ({ piece }: { piece: number }) => {
+  const backgroundColor = (() => {
+    switch (piece) {
+      case 0:
+        return "$black10";
+      case 1:
+        return "$blue10";
+      case 2:
+        return "$green10";
+      case 3:
+        return "$blue10";
+      case 4:
+        return "$green0";
+      default:
+        return "$black10";
+    }
+  })();
+
+  const Piece = mainTheme.styled("span", {
+    display: "inline-block",
+    width: "15px",
+    height: "15px",
+    borderRadius: "50%",
+    backgroundColor,
+  });
+
+  return <Piece />;
+};

@@ -1,4 +1,5 @@
 import { extendTheme } from "@chakra-ui/react";
+import { createStitches } from "@stitches/react";
 import buttonTheme from "./button";
 import colors from "./colors";
 
@@ -26,3 +27,15 @@ const theme = extendTheme({
 });
 
 export default theme;
+
+export const mainTheme = createStitches({
+  theme: {
+    colors: {
+      white10: "#e0e2db",
+      black10: "#230903",
+      blue10: "#4bb3fd",
+      gray10: "#545e75",
+      green10: "#439a86",
+    },
+  },
+});

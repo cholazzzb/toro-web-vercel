@@ -1,6 +1,6 @@
 const colors = {
   white: {
-    10: "e0e2db",
+    10: "#e0e2db",
   },
   black: {
     10: "#230903",
