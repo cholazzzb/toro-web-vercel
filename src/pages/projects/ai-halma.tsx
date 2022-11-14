@@ -7,7 +7,8 @@ import { useEffect, useRef, useState } from "react";
 import { EGameState } from "components/projects/ai-halma/@enum";
 
 // AI
-import { Button } from "@chakra-ui/react";
+import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BoardGame from "components/projects/ai-halma/BoardGame";
 import {
   Board,
@@ -17,8 +18,7 @@ import {
 } from "src/domains/projects/ai-halma/AIHalmaEntity";
 import { getBestMove } from "src/domains/projects/ai-halma/AIHalmaLogic";
 import { initialBoard } from "src/domains/projects/ai-halma/gameSetting";
-
-const players: string[] = ["Human", "Halmiezzz", "RL"];
+import { mainTheme } from "src/theme";
 
 const AIHalma = () => {
   const [board, setBoard] = useState<Board>(initialBoard.twoPlayer);
@@ -34,18 +34,10 @@ const AIHalma = () => {
         break;
     }
   };
+
   const [turn, setTurn] = useState<Square.Player1 | Square.Player2>(
     Square.Player1
   );
-
-  const [player1, setPlayer1] = useState<string>(players[0]);
-  const handlePlayer1Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setPlayer1(e.target.value);
-  };
-  const [player2, setPlayer2] = useState<string>(players[0]);
-  const handlePlayer2Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setPlayer2(e.target.value);
-  };
 
   const movePiece = (initPos: Position, newPos: Position) => {
     setBoard((board) => {
@@ -90,12 +82,11 @@ const AIHalma = () => {
           break;
       }
     }
-
   };
 
   useEffect(() => {
-    switch(gameState){
-      case EGameState.PLAYING:{
+    switch (gameState) {
+      case EGameState.PLAYING: {
         timer.current = setTimeout(() => {
           aiThink();
         }, 1000);
@@ -107,7 +98,7 @@ const AIHalma = () => {
       }
 
       case EGameState.FINISHED: {
-        break
+        break;
       }
     }
 
@@ -116,25 +107,47 @@ const AIHalma = () => {
         clearTimeout(timer.current);
       }
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameState, movesQueue]);
 
   return (
     <Layout>
-      <Player
-        playerNumber={1}
-        player={player1}
-        onPlayerChange={handlePlayer1Change}
-      />
+      <Player playerName="Player 1" active={turn === Square.Player1} />
       <BoardGame boardData={board}></BoardGame>
-      <Player
-        playerNumber={2}
-        player={player2}
-        onPlayerChange={handlePlayer2Change}
-      />
-      <Button variant="primary" onClick={toggleGameState}>Start/Pause</Button>
+      <Player playerName="Player 2" active={turn === Square.Player2} />
+      <Button onClick={toggleGameState}>
+        {gameState === EGameState.PLAYING && (
+          <Icon>
+            <FontAwesomeIcon icon={faPause} />
+          </Icon>
+        )}
+        {gameState === EGameState.PAUSED && (
+          <Icon>
+            <FontAwesomeIcon icon={faPlay} />
+          </Icon>
+        )}
+        Start/Pause
+      </Button>
     </Layout>
   );
 };
 
 export default AIHalma;
+
+const Icon = mainTheme.styled("span", {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  height: "10px",
+  width: "10px",
+  marginInlineEnd: "10px",
+});
+
+const Button = mainTheme.styled("button", {
+  display: "flex",
+  alignItems: "center",
+  padding: "15px",
+  borderRadius: "10px",
+  backgroundColor: "#230903",
+  color: "#e0e2db",
+});

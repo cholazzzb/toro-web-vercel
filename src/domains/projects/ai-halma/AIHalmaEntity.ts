@@ -37,6 +37,6 @@ export type Move = {
 export type Moves = Array<Move>;
 
 export type MoveQueue = {
-  startPos: Position,
-  endPos: Position
-}
+  startPos: Position;
+  endPos: Position;
+};

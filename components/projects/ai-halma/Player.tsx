@@ -1,26 +1,46 @@
-import styles from "./Player.module.css";
-
-const players: string[] = ["Human", "Halmiezzz", "RL"];
+import { mainTheme } from "src/theme";
 
 type PlayerProps = {
-  playerNumber: number;
-  player: string;
-  onPlayerChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  playerName: string;
+  active?: boolean;
 };
 
-const Player = ({ playerNumber, player, onPlayerChange }: PlayerProps) => {
+const Player = ({ playerName, active }: PlayerProps) => {
+  const activePlayerStyle: Record<string, string> = {};
+  if (active) {
+    activePlayerStyle.border = "1px solid";
+    activePlayerStyle.borderColor = "white";
+  }
+
+  const PlayerRow = mainTheme.styled("div", {
+    ...activePlayerStyle,
+    display: "flex",
+    alignItems: "center",
+    padding: "10px",
+    backgroundColor: "$gray3",
+    width: "316px",
+    height: "40px",
+    margin: "10px",
+    borderRadius: "5px",
+  });
   return (
-    <div>
-      Player {playerNumber}:
-      <select value={player} onChange={(e) => onPlayerChange(e)}>
-        {players.map((player) => (
-          <option key={player} value={player}>
-            {player}
-          </option>
-        ))}
-      </select>
-    </div>
+    <PlayerRow>
+      <Avatar />
+      <PlayerName>{playerName}</PlayerName>
+    </PlayerRow>
   );
 };
 
 export default Player;
+
+const Avatar = mainTheme.styled("span", {
+  backgroundColor: "white",
+  height: "20px",
+  width: "20px",
+  borderRadius: "50%",
+  marginInlineEnd: "10px",
+});
+
+const PlayerName = mainTheme.styled("p", {
+  color: "$white10",
+});

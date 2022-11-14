@@ -6,7 +6,6 @@ type SquareProps = {
 };
 
 const Square = memo(({ piece }: SquareProps) => {
-
   return (
     <SquareContainer>
       <PieceContainer piece={piece} />
@@ -22,8 +21,8 @@ const SquareContainer = mainTheme.styled("div", {
   display: "flex",
   border: "solid 1px",
   borderColor: "$white10",
-  width: "20px",
-  height: "20px",
+  width: "30px",
+  height: "30px",
   justifyContent: "center",
   alignItems: "center",
 });
@@ -48,8 +47,8 @@ const PieceContainer = ({ piece }: { piece: number }) => {
 
   const Piece = mainTheme.styled("span", {
     display: "inline-block",
-    width: "15px",
-    height: "15px",
+    width: "20px",
+    height: "20px",
     borderRadius: "50%",
     backgroundColor,
   });

@@ -3,7 +3,7 @@ import {
   getBestMove,
   getLegalJumpMoves,
   getLegalStepMoves,
-  getMostGreedyMove
+  getMostGreedyMove,
 } from "./AIHalmaLogic";
 import { initialBoard } from "./gameSetting";
 
@@ -106,11 +106,11 @@ describe("two player ", () => {
   it("getLegalStepMoves", () => {
     const board = initialBoard.twoPlayer;
     const playerIdx = Square.Player1;
-    const position = {x: 0, y: 6};
-    const jumpMoves = getLegalJumpMoves(board, playerIdx, position)
-    const stepMoves = getLegalStepMoves(board, playerIdx, position)
-    const bestMove = getMostGreedyMove([...jumpMoves, ...stepMoves], playerIdx)
-  })
+    const position = { x: 0, y: 6 };
+    const jumpMoves = getLegalJumpMoves(board, playerIdx, position);
+    const stepMoves = getLegalStepMoves(board, playerIdx, position);
+    const bestMove = getMostGreedyMove([...jumpMoves, ...stepMoves], playerIdx);
+  });
   it("getBestMove", () => {
     const board = initialBoard.twoPlayer;
     const bestMove = getBestMove(board, Square.Player1);

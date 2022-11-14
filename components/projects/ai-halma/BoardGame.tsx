@@ -1,7 +1,7 @@
 import Square from "./Square";
 
-import styles from "./Board.module.css";
 import { Board } from "src/domains/projects/ai-halma/AIHalmaEntity";
+import { mainTheme } from "src/theme";
 
 type BoardGameProps = {
   boardData: Board;
@@ -9,18 +9,27 @@ type BoardGameProps = {
 
 const BoardGame = ({ boardData }: BoardGameProps) => {
   return (
-    <div className={styles.board}>
+    <Board>
       {boardData.map((row, rowIdx) => (
-        <div className={styles.row} key={rowIdx}>
+        <Row key={rowIdx}>
           {row.map((col, colIdx) => (
             <div key={colIdx}>
               <Square piece={col}></Square>
             </div>
           ))}
-        </div>
+        </Row>
       ))}
-    </div>
+    </Board>
   );
 };
 
 export default BoardGame;
+
+const Board = mainTheme.styled("div", {
+  backgroundColor: "black",
+  padding: "8px",
+});
+
+const Row = mainTheme.styled("div", {
+  display: "flex",
+});

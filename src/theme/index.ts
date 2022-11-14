@@ -31,11 +31,17 @@ export default theme;
 export const mainTheme = createStitches({
   theme: {
     colors: {
-      white10: "#e0e2db",
-      black10: "#230903",
-      blue10: "#4bb3fd",
-      gray10: "#545e75",
-      green10: "#439a86",
+      white10: "rgba(224, 226, 219, 1)",
+      black10: "rgba(35, 9, 3, 1)",
+      blue10: "rgba(75, 179, 253, 1)",
+      gray10: "rgba(84, 94, 117, 1)",
+      gray3: "rgba(84, 94, 117, 0.3)",
+      green10: "rgba(67, 154, 134, 1)",
     },
+  },
+  media: {
+    sm: "(min-width: 640px)",
+    md: "(min-width: 768px)",
+    lg: "(min-width: 1024px)",
   },
 });

@@ -1,23 +1,23 @@
 import {
-    Board,
-    BoardSize,
-    Move,
-    Moves,
-    MoveType,
-    PlayerIdx,
-    Position,
-    Square
+  Board,
+  BoardSize,
+  Move,
+  Moves,
+  MoveType,
+  PlayerIdx,
+  Position,
+  Square,
 } from "./AIHalmaEntity";
 import {
-    getPositionDistance,
-    multipleDirection,
-    sumPosition
+  getPositionDistance,
+  multipleDirection,
+  sumPosition,
 } from "./AIHalmaUtil";
 import {
-    boardSize,
-    Direction,
-    directions,
-    targetPosition
+  boardSize,
+  Direction,
+  directions,
+  targetPosition,
 } from "./gameSetting";
 
 const isInsideBoard = (position: Position, boardSize: BoardSize) =>
@@ -157,8 +157,12 @@ export const getMostGreedyMove = (moves: Moves, playerIdx: PlayerIdx): Move => {
       const startPosDistance = getPositionDistance(
         move.startPosition,
         targetPosition[playerIdx]
-      )
-      const deltaDistance = startPosDistance.x + startPosDistance.y - endPosDistance.x - endPosDistance.y
+      );
+      const deltaDistance =
+        startPosDistance.x +
+        startPosDistance.y -
+        endPosDistance.x -
+        endPosDistance.y;
       return sequenceLength + deltaDistance;
     });
 

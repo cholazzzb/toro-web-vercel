@@ -1,5 +1,7 @@
-import { ReactNode } from "react";
+import { keyframes } from "@stitches/react";
 import Head from "next/head";
+import { ReactNode } from "react";
+import { mainTheme } from "src/theme";
 import styles from "./Layout.module.css";
 
 type LayoutProps = {
@@ -8,7 +10,7 @@ type LayoutProps = {
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className={styles.background}>
+    <Background>
       <Head>
         <title>Toro-web</title>
         <meta
@@ -18,21 +20,43 @@ export const Layout = ({ children }: LayoutProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={styles.movingObject}>
+      <MovingObject>
         <ul className={styles.circles}>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
+          {Array(10)
+            .fill(null)
+            .map((_, idx) => (
+              <li key={idx}></li>
+            ))}
         </ul>
-      </div>
-      <main className={styles.main}>{children}</main>
-    </div>
+      </MovingObject>
+      <Main>{children}</Main>
+    </Background>
   );
 };
+
+const gradientBackground = keyframes({
+  "0%": { backgroundPosition: "0% 50%" },
+  "50%": { backgroundPosition: "100% 50%" },
+  "100%": { backgroundPosition: "0% 50%" },
+});
+const Background = mainTheme.styled("div", {
+  backgroundSize: "400% 400%",
+  animation: `${gradientBackground} 15s ease infinite`,
+});
+
+const Main = mainTheme.styled("main", {
+  zIndex: 1,
+  position: "absolute",
+  width: "100vw",
+  minHeight: "100vh",
+  padding: "4rem 0",
+  flex: 1,
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+});
+
+const MovingObject = mainTheme.styled("div", {
+  zIndex: 0,
+});
