@@ -1,4 +1,4 @@
-import { Experience } from "./experienceEntity";
+import { Experience } from "../../domains/experience/experienceEntity";
 
 const expData: Array<Experience> = [
   {

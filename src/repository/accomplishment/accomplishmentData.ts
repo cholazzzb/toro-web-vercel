@@ -1,4 +1,4 @@
-import { Accomplishment } from "./accomplishmentEntity";
+import { Accomplishment } from "../../domains/accomplishment/accomplishmentEntity";
 
 const accompData: Array<Accomplishment> = [
   {

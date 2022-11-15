@@ -32,6 +32,7 @@ export const mainTheme = createStitches({
   theme: {
     colors: {
       white10: "rgba(224, 226, 219, 1)",
+      white1: "rgba(224, 226, 219, 0.1)",
       black10: "rgba(35, 9, 3, 1)",
       blue10: "rgba(75, 179, 253, 1)",
       gray10: "rgba(84, 94, 117, 1)",

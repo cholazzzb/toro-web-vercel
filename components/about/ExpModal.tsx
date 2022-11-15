@@ -1,8 +1,8 @@
-import ExpCard from "./ExpCard";
 import { Modal, ModalBody, ModalHeader } from "components/Modal";
 import Typography from "components/Typography";
+import ExpCard from "./ExpCard";
 
-import expData from "src/domains/experience/experienceData";
+import expData from "src/repository/experience/experienceData";
 
 type ExpModalProps = {
   onClose: () => void;

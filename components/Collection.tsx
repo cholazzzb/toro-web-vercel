@@ -16,7 +16,7 @@ export const VerticalCollection = ({
   const arrOfChildren = Children.toArray(children);
 
   return (
-    <Box position="relative" width="100%" height="200px" bg="black.10">
+    <Box position="relative" width="100%" height="300px">
       <AutoSizer>
         {({ height, width }) => (
           <List
