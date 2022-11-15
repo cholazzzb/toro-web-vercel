@@ -1,4 +1,4 @@
-import { Publication } from './publicationEntity';
+import { Publication } from '../../domains/publication/publicationEntity';
 
 const pubData: Array<Publication> = [
   {

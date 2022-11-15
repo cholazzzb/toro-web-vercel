@@ -1,21 +1,21 @@
 import { Modal, ModalBody, ModalHeader } from 'components/Modal';
 import Typography from 'components/Typography';
+import { Publication } from 'src/domains/publication/publicationEntity';
 import PubCard from './PubCard';
-
-import pubData from 'src/domains/publication/publicationData';
 
 type PubModalProps = {
   onClose: () => void;
+  publications: Array<Publication>;
 };
 
-const PubModal = ({ onClose }: PubModalProps) => {
+const PubModal = ({ publications, onClose }: PubModalProps) => {
   return (
     <Modal>
       <ModalHeader onClose={onClose}>
         <Typography>Publications</Typography>
       </ModalHeader>
       <ModalBody>
-        {pubData.map((pub) => (
+        {publications.map((pub) => (
           <PubCard key={pub.title} data={pub} />
         ))}
       </ModalBody>

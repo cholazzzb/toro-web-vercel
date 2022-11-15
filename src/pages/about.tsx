@@ -24,25 +24,27 @@ import { InstagramIcon } from 'src/components/icon/InstagramIcon';
 import { LinkedInIcon } from 'src/components/icon/LinkedInIcon';
 import { MusicIcon } from 'src/components/icon/MusicIcon';
 import { Accomplishment } from 'src/domains/accomplishment/accomplishmentEntity';
+import { Experience } from 'src/domains/experience/experienceEntity';
+import { Publication } from 'src/domains/publication/publicationEntity';
+import accompData from 'src/repository/accomplishment/accomplishmentData';
+import expData from 'src/repository/experience/experienceData';
+import pubData from 'src/repository/publication/publicationData';
 import { mainTheme } from 'src/theme';
 
 export async function getStaticProps() {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  const res = await fetch('https://.../posts');
-  const posts = await res.json();
-
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
   return {
     props: {
-      posts,
+      accomplishments: accompData,
+      experiences: expData,
+      publications: pubData,
     },
   };
 }
 
 const About: NextPage<{
   accomplishments: Array<Accomplishment>;
+  experiences: Array<Experience>;
+  publications: Array<Publication>;
 }> = (props) => {
   const [expModalOpen, setExpModalOpen] = useState<boolean>(false);
   const openExpModal = () => setExpModalOpen(true);
@@ -130,8 +132,7 @@ const About: NextPage<{
           <LinkIcon
             target="_blank"
             href="https://github.com/cholazzzb"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             <IconContainer>
               <Icon as={GithubIcon} fontSize="20px" />
             </IconContainer>
@@ -140,8 +141,7 @@ const About: NextPage<{
           <LinkIcon
             target="_blank"
             href="https://linkedin.com/in/nicholas-biantoro/"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             <IconContainer>
               <Icon as={LinkedInIcon} fontSize="20px" />
             </IconContainer>
@@ -150,8 +150,7 @@ const About: NextPage<{
           <LinkIcon
             target="_blank"
             href="https://instagram.com/toro.nic"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             <IconContainer>
               <Icon as={InstagramIcon} fontSize="20px" />
             </IconContainer>
@@ -160,8 +159,7 @@ const About: NextPage<{
           <LinkIcon
             target="_blank"
             href="https://codepen.io/nicholastoro"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             <IconContainer>
               <Icon as={CodepenIcon} fontSize="20px" />
             </IconContainer>
@@ -170,8 +168,7 @@ const About: NextPage<{
           <LinkIcon
             target="_blank"
             href="https://www.goodreads.com/user/show/138401906-nicholas-biantoro"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             <IconContainer>
               <Icon as={BookIcon} fontSize="20px" />
             </IconContainer>
@@ -180,8 +177,7 @@ const About: NextPage<{
           <LinkIcon
             target="_blank"
             href="https://leetcode.com/torocholazzz/"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             <IconContainer>
               <Icon as={CodeIcon} fontSize="20px" />
             </IconContainer>
@@ -190,8 +186,7 @@ const About: NextPage<{
           <LinkIcon
             target="_blank"
             href="https://www.chess.com/member/cholazzzb"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             <IconContainer>
               <Icon as={ChessIcon} fontSize="20px" />
             </IconContainer>
@@ -199,8 +194,7 @@ const About: NextPage<{
           <LinkIcon
             target="_blank"
             href="https://musescore.com/user/35444237"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             <IconContainer>
               <Icon as={MusicIcon} fontSize="20px" />
             </IconContainer>
@@ -209,8 +203,12 @@ const About: NextPage<{
       </ProfileCard>
       <HomeButton />
 
-      {expModalOpen && <ExpModal onClose={closeExpModal} />}
-      {pubModalOpen && <PubModal onClose={closePubModal} />}
+      {expModalOpen && (
+        <ExpModal experiences={props.experiences} onClose={closeExpModal} />
+      )}
+      {pubModalOpen && (
+        <PubModal publications={props.publications} onClose={closePubModal} />
+      )}
       {accompModalOpen && (
         <AccompModal
           accomplishments={props.accomplishments}
