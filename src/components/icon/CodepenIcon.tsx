@@ -1,8 +1,8 @@
-import { createIcon } from "@chakra-ui/react";
+import { createIcon } from '@chakra-ui/react';
 
 export const CodepenIcon = createIcon({
-  displayName: "CodepenIcon",
-  viewBox: "0 0 512 512",
+  displayName: 'CodepenIcon',
+  viewBox: '0 0 512 512',
   path: (
     <path
       fill="#000000"

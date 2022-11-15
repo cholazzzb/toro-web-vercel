@@ -1,5 +1,5 @@
-import { EMoveType } from "./@enum";
-import { CEndPosition } from "./constants";
+import { EMoveType } from './@enum';
+import { CEndPosition } from './constants';
 
 export const calcDisVec = (pos1: IPosition, pos2: IPosition): IPosition => {
   return [Math.abs(pos1[0] - pos2[0]), Math.abs(pos1[1] - pos2[1])];
@@ -59,7 +59,7 @@ export const isValidMove = (board: IBoard, move: IPieceMove): boolean => {
 export const movePiece = (
   board: IBoard,
   move: IMove,
-  initPos: IPosition
+  initPos: IPosition,
 ): IBoard => {
   const newBoard = board.map((row) => [...row]);
   [newBoard[initPos[0]][initPos[1]], newBoard[move[0]][move[1]]] = [

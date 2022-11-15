@@ -1,12 +1,12 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-import { CardHead, ColCard, RowCard } from "components/Card";
-import Typography from "components/Typography";
-import { IconButton } from "components/Button";
+import { CardHead, ColCard, RowCard } from 'components/Card';
+import Typography from 'components/Typography';
+import { IconButton } from 'components/Button';
 
-import styles from "./AccompCard.module.css";
-import Divider from "components/Divider";
-import { Accomplishment } from "src/domains/accomplishment/accomplishmentEntity";
+import styles from './AccompCard.module.css';
+import Divider from 'components/Divider';
+import { Accomplishment } from 'src/domains/accomplishment/accomplishmentEntity';
 
 type AccompCardProps = {
   data: Accomplishment;

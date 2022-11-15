@@ -1,8 +1,8 @@
-import { createIcon } from "@chakra-ui/react";
+import { createIcon } from '@chakra-ui/react';
 
 export const LinkedInIcon = createIcon({
-  displayName: "LinkedInIcon",
-  viewBox: "0 0 448 512",
+  displayName: 'LinkedInIcon',
+  viewBox: '0 0 448 512',
   path: (
     <path
       fill="#0277b5"

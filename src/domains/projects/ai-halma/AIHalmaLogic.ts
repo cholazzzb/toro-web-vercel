@@ -7,18 +7,18 @@ import {
   PlayerIdx,
   Position,
   Square,
-} from "./AIHalmaEntity";
+} from './AIHalmaEntity';
 import {
   getPositionDistance,
   multipleDirection,
   sumPosition,
-} from "./AIHalmaUtil";
+} from './AIHalmaUtil';
 import {
   boardSize,
   Direction,
   directions,
   targetPosition,
-} from "./gameSetting";
+} from './gameSetting';
 
 const isInsideBoard = (position: Position, boardSize: BoardSize) =>
   position.x >= 0 &&
@@ -31,7 +31,7 @@ const isEmptySquare = (board: Board, position: Position) =>
 
 export const getAllPiecesPosition = (
   board: Board,
-  playerIdx: PlayerIdx
+  playerIdx: PlayerIdx,
 ): Array<Position> => {
   const positions: Array<Position> = [];
   board.forEach((rows, y) => {
@@ -48,7 +48,7 @@ export const getAllPiecesPosition = (
 export const getLegalStepMoves = (
   board: Board,
   playerIdx: PlayerIdx,
-  position: Position
+  position: Position,
 ): Moves => {
   const moves: Moves = [];
   if (board[position.y][position.x] !== playerIdx) return moves;
@@ -75,7 +75,7 @@ export const getLegalStepMoves = (
 const isPossibleJumpToDir = (
   board: Board,
   position: Position,
-  direction: Direction
+  direction: Direction,
 ) => {
   const dis1 = sumPosition(position, direction);
   const dis2 = sumPosition(position, multipleDirection(direction, 2));
@@ -90,7 +90,7 @@ const isPossibleJumpToDir = (
 export const getLegalJumpMoves = (
   board: Board,
   playerIdx: PlayerIdx,
-  position: Position
+  position: Position,
 ): Moves => {
   const moves: Moves = [];
   if (board[position.y][position.x] !== playerIdx) return moves;
@@ -119,7 +119,7 @@ export const getLegalJumpMoves = (
       if (isPossibleJumpToDir(markedBoard, lastPosition, direction)) {
         const newPosition = sumPosition(
           lastPosition,
-          multipleDirection(direction, 2)
+          multipleDirection(direction, 2),
         );
         newSequence.push(newPosition);
         markedBoard[newPosition.y][newPosition.x] = playerIdx;
@@ -152,11 +152,11 @@ export const getMostGreedyMove = (moves: Moves, playerIdx: PlayerIdx): Move => {
       const sequenceLength = move.sequence.length;
       const endPosDistance = getPositionDistance(
         move.endPosition,
-        targetPosition[playerIdx]
+        targetPosition[playerIdx],
       );
       const startPosDistance = getPositionDistance(
         move.startPosition,
-        targetPosition[playerIdx]
+        targetPosition[playerIdx],
       );
       const deltaDistance =
         startPosDistance.x +

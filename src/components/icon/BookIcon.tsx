@@ -1,8 +1,8 @@
-import { createIcon } from "@chakra-ui/react";
+import { createIcon } from '@chakra-ui/react';
 
 export const BookIcon = createIcon({
-  displayName: "BookIcon",
-  viewBox: "0 0 576 512",
+  displayName: 'BookIcon',
+  viewBox: '0 0 576 512',
   path: (
     <path
       fill="#000000"

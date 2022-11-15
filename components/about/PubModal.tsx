@@ -1,8 +1,8 @@
-import { Modal, ModalBody, ModalHeader } from "components/Modal";
-import Typography from "components/Typography";
-import PubCard from "./PubCard";
+import { Modal, ModalBody, ModalHeader } from 'components/Modal';
+import Typography from 'components/Typography';
+import PubCard from './PubCard';
 
-import pubData from "src/domains/publication/publicationData";
+import pubData from 'src/domains/publication/publicationData';
 
 type PubModalProps = {
   onClose: () => void;

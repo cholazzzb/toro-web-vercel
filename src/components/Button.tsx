@@ -1,4 +1,4 @@
-import { Button, ButtonProps, Image } from "@chakra-ui/react";
+import { Button, ButtonProps, Image } from '@chakra-ui/react';
 
 interface IconButtonProps extends ButtonProps {
   iconSrc: string;

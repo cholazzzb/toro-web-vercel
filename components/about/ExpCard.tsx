@@ -1,10 +1,10 @@
-import Link from "next/link";
-import { IconButton } from "components/Button";
-import { CardHead, ColCard, RowCard } from "components/Card";
-import Divider from "components/Divider";
-import Typography from "components/Typography";
-import styles from "./ExpCard.module.css";
-import { Experience } from "src/domains/experience/experienceEntity";
+import Link from 'next/link';
+import { IconButton } from 'components/Button';
+import { CardHead, ColCard, RowCard } from 'components/Card';
+import Divider from 'components/Divider';
+import Typography from 'components/Typography';
+import styles from './ExpCard.module.css';
+import { Experience } from 'src/domains/experience/experienceEntity';
 
 type ExpCardProps = {
   data: Experience;

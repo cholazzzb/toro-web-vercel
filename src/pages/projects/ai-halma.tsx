@@ -1,24 +1,24 @@
 // UI
-import { Layout } from "components/Layout";
-import Player from "components/projects/ai-halma/Player";
-import { useEffect, useRef, useState } from "react";
+import { Layout } from 'components/Layout';
+import Player from 'components/projects/ai-halma/Player';
+import { useEffect, useRef, useState } from 'react';
 
 // Logic
-import { EGameState } from "components/projects/ai-halma/@enum";
+import { EGameState } from 'components/projects/ai-halma/@enum';
 
 // AI
-import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import BoardGame from "components/projects/ai-halma/BoardGame";
+import { faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import BoardGame from 'components/projects/ai-halma/BoardGame';
 import {
   Board,
   MoveQueue,
   Position,
   Square,
-} from "src/domains/projects/ai-halma/AIHalmaEntity";
-import { getBestMove } from "src/domains/projects/ai-halma/AIHalmaLogic";
-import { initialBoard } from "src/domains/projects/ai-halma/gameSetting";
-import { mainTheme } from "src/theme";
+} from 'src/domains/projects/ai-halma/AIHalmaEntity';
+import { getBestMove } from 'src/domains/projects/ai-halma/AIHalmaLogic';
+import { initialBoard } from 'src/domains/projects/ai-halma/gameSetting';
+import { mainTheme } from 'src/theme';
 
 const AIHalma = () => {
   const [board, setBoard] = useState<Board>(initialBoard.twoPlayer);
@@ -36,7 +36,7 @@ const AIHalma = () => {
   };
 
   const [turn, setTurn] = useState<Square.Player1 | Square.Player2>(
-    Square.Player1
+    Square.Player1,
   );
 
   const movePiece = (initPos: Position, newPos: Position) => {
@@ -134,20 +134,20 @@ const AIHalma = () => {
 
 export default AIHalma;
 
-const Icon = mainTheme.styled("span", {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  height: "10px",
-  width: "10px",
-  marginInlineEnd: "10px",
+const Icon = mainTheme.styled('span', {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '10px',
+  width: '10px',
+  marginInlineEnd: '10px',
 });
 
-const Button = mainTheme.styled("button", {
-  display: "flex",
-  alignItems: "center",
-  padding: "15px",
-  borderRadius: "10px",
-  backgroundColor: "#230903",
-  color: "#e0e2db",
+const Button = mainTheme.styled('button', {
+  display: 'flex',
+  alignItems: 'center',
+  padding: '15px',
+  borderRadius: '10px',
+  backgroundColor: '#230903',
+  color: '#e0e2db',
 });

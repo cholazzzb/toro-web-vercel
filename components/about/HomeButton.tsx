@@ -1,8 +1,8 @@
-import Link from "next/link";
-import Image from "next/image";
-import ImageContainer from "components/ImageContainer";
-import styles from "./HomeButton.module.css";
-import { Blink } from "components/Animation";
+import Link from 'next/link';
+import Image from 'next/image';
+import ImageContainer from 'components/ImageContainer';
+import styles from './HomeButton.module.css';
+import { Blink } from 'components/Animation';
 
 const ProjectButton = () => {
   return (

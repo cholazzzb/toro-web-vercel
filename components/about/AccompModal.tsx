@@ -1,20 +1,21 @@
-import { Modal, ModalBody, ModalHeader } from "components/Modal";
-import Typography from "components/Typography";
-
-import accompData from "src/repository/accomplishment/accomplishmentData";
-import AccompCard from "./AccompCard";
+import { Modal, ModalBody, ModalHeader } from 'components/Modal';
+import Typography from 'components/Typography';
+import { Accomplishment } from 'src/domains/accomplishment/accomplishmentEntity';
+import accompData from 'src/repository/accomplishment/accomplishmentData';
+import AccompCard from './AccompCard';
 
 type AccompModalProps = {
+  accomplishments: Array<Accomplishment>;
   onClose: () => void;
 };
-const AccompModal = ({ onClose }: AccompModalProps) => {
+const AccompModal = ({ accomplishments, onClose }: AccompModalProps) => {
   return (
     <Modal>
       <ModalHeader onClose={onClose}>
         <Typography>Accomplishments</Typography>
       </ModalHeader>
       <ModalBody>
-        {accompData.map((accomp) => (
+        {accomplishments.map((accomp) => (
           <AccompCard key={accomp.title} data={accomp} />
         ))}
       </ModalBody>

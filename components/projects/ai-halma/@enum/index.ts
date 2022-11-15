@@ -4,7 +4,7 @@ export enum EMoveType {
 }
 
 export enum EGameState {
-  PLAYING = "PLAYING",
-  PAUSED = "PAUSED",
-  FINISHED = "FINISHED",
+  PLAYING = 'PLAYING',
+  PAUSED = 'PAUSED',
+  FINISHED = 'FINISHED',
 }

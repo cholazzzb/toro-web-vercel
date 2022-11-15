@@ -25,14 +25,14 @@ interface IPiecesPosition {
 type IHeading = [-1 | 0 | 1, -1 | 0 | 1];
 
 type ICHeadingKey =
-  | "up"
-  | "down"
-  | "left"
-  | "right"
-  | "upLeft"
-  | "upRight"
-  | "downLeft"
-  | "downRight";
+  | 'up'
+  | 'down'
+  | 'left'
+  | 'right'
+  | 'upLeft'
+  | 'upRight'
+  | 'downLeft'
+  | 'downRight';
 
 type ICHeading = Record<ICHeadingKey, IHeading>;
 

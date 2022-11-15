@@ -1,8 +1,8 @@
-import { createIcon } from "@chakra-ui/react";
+import { createIcon } from '@chakra-ui/react';
 
 export const InstagramIcon = createIcon({
-  displayName: "InstagramIcon",
-  viewBox: "0 0 448 512",
+  displayName: 'InstagramIcon',
+  viewBox: '0 0 448 512',
   path: (
     <path
       fill="#cb4a7f"

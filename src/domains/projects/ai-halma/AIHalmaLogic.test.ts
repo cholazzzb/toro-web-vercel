@@ -1,14 +1,14 @@
-import { MoveType, Square } from "./AIHalmaEntity";
+import { MoveType, Square } from './AIHalmaEntity';
 import {
   getBestMove,
   getLegalJumpMoves,
   getLegalStepMoves,
   getMostGreedyMove,
-} from "./AIHalmaLogic";
-import { initialBoard } from "./gameSetting";
+} from './AIHalmaLogic';
+import { initialBoard } from './gameSetting';
 
-describe("two player ", () => {
-  it("getLegalStepMoves", () => {
+describe('two player ', () => {
+  it('getLegalStepMoves', () => {
     const board = initialBoard.twoPlayer;
     const startPosition = { x: 0, y: 5 };
     const playerIdx = Square.Player1;
@@ -63,7 +63,7 @@ describe("two player ", () => {
       },
     ]);
   });
-  it("getLegalJumpMoves", () => {
+  it('getLegalJumpMoves', () => {
     const board = initialBoard.twoPlayer;
     const startPosition = { x: 0, y: 6 };
     const playerIdx = Square.Player1;
@@ -103,7 +103,7 @@ describe("two player ", () => {
       },
     ]);
   });
-  it("getLegalStepMoves", () => {
+  it('getLegalStepMoves', () => {
     const board = initialBoard.twoPlayer;
     const playerIdx = Square.Player1;
     const position = { x: 0, y: 6 };
@@ -111,7 +111,7 @@ describe("two player ", () => {
     const stepMoves = getLegalStepMoves(board, playerIdx, position);
     const bestMove = getMostGreedyMove([...jumpMoves, ...stepMoves], playerIdx);
   });
-  it("getBestMove", () => {
+  it('getBestMove', () => {
     const board = initialBoard.twoPlayer;
     const bestMove = getBestMove(board, Square.Player1);
   });

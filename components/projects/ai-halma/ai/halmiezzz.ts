@@ -1,10 +1,10 @@
-import { CHeading } from "../constants";
-import { isInsideBoard } from "../logic";
+import { CHeading } from '../constants';
+import { isInsideBoard } from '../logic';
 
 export const getAllPiecePos = (
   board: IBoard,
   playerId: IPlayerID,
-  numOfPiece: number
+  numOfPiece: number,
 ): IPosition[] => {
   let foundedPieces = 0;
   const allPiecePos: IPosition[] = [];
@@ -31,7 +31,7 @@ export const getAllPiecePos = (
 // Move for 1 Piece
 export const getLegalStepMoves = (
   board: IBoard,
-  initPos: IPosition
+  initPos: IPosition,
 ): Array<IAIOutput> => {
   const legalStepMoves: Array<IAIOutput> = [];
   for (let heading of Object.values(CHeading)) {
@@ -56,14 +56,14 @@ export const getLegalStepMoves = (
 export const getLegalJumpMoves = (
   board: IBoard,
   initPos: IPosition,
-  playerId: IPlayerID
+  playerId: IPlayerID,
 ): Array<IAIOutput> => {
   return [{ moves: [], initPos: [1, 2] }];
 };
 
 export const getLegalPieceMoves = (
   board: IBoard,
-  initPos: IPosition
+  initPos: IPosition,
 ): IAIOutput[] => {
   return [{ moves: [], initPos: [1, 2] }];
 };
@@ -74,7 +74,7 @@ export const getMoveWHighestChebyDis = (moves: IAIOutput[]): IAIOutput => {
 
 export const getMoveWHigherChebyDis = (
   move1: IAIOutput,
-  move2: IAIOutput
+  move2: IAIOutput,
 ): IAIOutput => {
   return { moves: [], initPos: [1, 2] };
 };
@@ -85,7 +85,7 @@ const halmiezzz = (board: IBoard, playerId: IPlayerID): IAIOutput => {
     (piecePos) => {
       const legalPieceMoves = getLegalPieceMoves(board, piecePos);
       return getMoveWHighestChebyDis(legalPieceMoves);
-    }
+    },
   );
 
   let bestMove = allPieceMoveWHighestChebyDevDis[0];
@@ -96,7 +96,7 @@ const halmiezzz = (board: IBoard, playerId: IPlayerID): IAIOutput => {
   ) {
     bestMove = getMoveWHigherChebyDis(
       bestMove,
-      allPieceMoveWHighestChebyDevDis[moveIdx]
+      allPieceMoveWHighestChebyDevDis[moveIdx],
     );
   }
 

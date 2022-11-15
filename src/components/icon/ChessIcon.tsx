@@ -1,8 +1,8 @@
-import { createIcon } from "@chakra-ui/react";
+import { createIcon } from '@chakra-ui/react';
 
 export const ChessIcon = createIcon({
-  displayName: "ChessIcon",
-  viewBox: "0 0 320 512",
+  displayName: 'ChessIcon',
+  viewBox: '0 0 320 512',
   path: (
     <path
       fill="#388364"

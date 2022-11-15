@@ -1,4 +1,4 @@
-import { Board, PlayerIdx, Position, Square } from "./AIHalmaEntity";
+import { Board, PlayerIdx, Position, Square } from './AIHalmaEntity';
 
 export const boardSize = 10;
 
