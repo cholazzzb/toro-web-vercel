@@ -5,10 +5,10 @@ interface IconButtonProps extends ButtonProps {
 }
 
 export const IconButton = (props: IconButtonProps) => {
-  const { iconSrc } = props;
+  const { iconSrc, ...others } = props;
 
   return (
-    <Button variant="icon" w="50" h="50" {...props}>
+    <Button variant="icon" w="50" h="50" {...others}>
       <Image src={iconSrc} alt="icon-button" layout="fill" boxSize="20px" />
     </Button>
   );
