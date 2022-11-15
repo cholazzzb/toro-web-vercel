@@ -5,7 +5,7 @@ import AccompModal from 'components/about/AccompModal';
 import ExpModal from 'components/about/ExpModal';
 import HomeButton from 'components/about/HomeButton';
 import PubModal from 'components/about/PubModal';
-import { CardHead, RowCard } from 'components/Card';
+import { CardHead } from 'components/Card';
 import Profile from 'components/home/Profile';
 import ImageContainer from 'components/ImageContainer';
 import { Layout } from 'components/Layout';
@@ -14,8 +14,8 @@ import { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { IconButton } from 'src/components/Button';
 import { BookIcon } from 'src/components/icon/BookIcon';
+import { BrainIcon } from 'src/components/icon/BrainIcon';
 import { ChessIcon } from 'src/components/icon/ChessIcon';
 import { CodeIcon } from 'src/components/icon/CodeIcon';
 import { CodepenIcon } from 'src/components/icon/CodepenIcon';
@@ -23,9 +23,13 @@ import { GithubIcon } from 'src/components/icon/GithubIcon';
 import { InstagramIcon } from 'src/components/icon/InstagramIcon';
 import { LinkedInIcon } from 'src/components/icon/LinkedInIcon';
 import { MusicIcon } from 'src/components/icon/MusicIcon';
+import { PublicationIcon } from 'src/components/icon/PublicationIcon';
+import { TrophyIcon } from 'src/components/icon/TrophyIcon';
+import { WorkIcon } from 'src/components/icon/WorkIcon';
 import { Accomplishment } from 'src/domains/accomplishment/accomplishmentEntity';
 import { Experience } from 'src/domains/experience/experienceEntity';
 import { Publication } from 'src/domains/publication/publicationEntity';
+import { Center, GlassCard } from 'src/presentational/components';
 import accompData from 'src/repository/accomplishment/accomplishmentData';
 import expData from 'src/repository/experience/experienceData';
 import pubData from 'src/repository/publication/publicationData';
@@ -75,8 +79,12 @@ const About: NextPage<{
         <VerticalCollection>
           <RowCard>
             <CardHead justify="justifyBetween">
-              <IconButton iconSrc="/icons/work.svg" bgColor="green.500" />
-              <Typography>Experiences</Typography>
+              <RowCardMain>
+                <ExperienceIconContainer>
+                  <WorkIcon color="white" />
+                </ExperienceIconContainer>
+                <Typography>Experiences</Typography>
+              </RowCardMain>
 
               <ProfileDetailButton onClick={openExpModal}>
                 <IconContainer>
@@ -87,8 +95,12 @@ const About: NextPage<{
           </RowCard>
           <RowCard>
             <CardHead justify="justifyBetween">
-              <IconButton iconSrc="/icons/brain.svg" bgColor="red.500" />
-              <Typography>Projects</Typography>
+              <RowCardMain>
+                <ProjectIconContainer>
+                  <BrainIcon color="white" />
+                </ProjectIconContainer>
+                <Typography>Projects</Typography>
+              </RowCardMain>
               <Link href="/projects">
                 <a>
                   <ProfileDetailButton>
@@ -102,11 +114,13 @@ const About: NextPage<{
           </RowCard>
           <RowCard>
             <CardHead justify="justifyBetween">
-              <IconButton
-                iconSrc="/icons/publication.svg"
-                bgColor="yellow.500"
-              />
-              <Typography>Publications</Typography>
+              <RowCardMain>
+                <PublicationIconContainer>
+                  <PublicationIcon color="white" />
+                </PublicationIconContainer>
+
+                <Typography>Publications</Typography>
+              </RowCardMain>
               <ProfileDetailButton onClick={openPubModal}>
                 <IconContainer>
                   <FontAwesomeIcon icon={faChevronRight} />
@@ -116,8 +130,13 @@ const About: NextPage<{
           </RowCard>
           <RowCard>
             <CardHead justify="justifyBetween">
-              <IconButton iconSrc="/icons/trophy.svg" bgColor="blue.500" />
-              <Typography>Accomplishments</Typography>
+              <RowCardMain>
+                <AccomplishmentIconContainer>
+                  <TrophyIcon color="white" />
+                </AccomplishmentIconContainer>
+                <Typography>Accomplishments</Typography>
+              </RowCardMain>
+              <RowCardMain></RowCardMain>
               <ProfileDetailButton onClick={openAccompModal}>
                 <IconContainer>
                   <FontAwesomeIcon icon={faChevronRight} />
@@ -132,7 +151,8 @@ const About: NextPage<{
           <LinkIcon
             target="_blank"
             href="https://github.com/cholazzzb"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+          >
             <IconContainer>
               <Icon as={GithubIcon} fontSize="20px" />
             </IconContainer>
@@ -141,7 +161,8 @@ const About: NextPage<{
           <LinkIcon
             target="_blank"
             href="https://linkedin.com/in/nicholas-biantoro/"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+          >
             <IconContainer>
               <Icon as={LinkedInIcon} fontSize="20px" />
             </IconContainer>
@@ -150,7 +171,8 @@ const About: NextPage<{
           <LinkIcon
             target="_blank"
             href="https://instagram.com/toro.nic"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+          >
             <IconContainer>
               <Icon as={InstagramIcon} fontSize="20px" />
             </IconContainer>
@@ -159,7 +181,8 @@ const About: NextPage<{
           <LinkIcon
             target="_blank"
             href="https://codepen.io/nicholastoro"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+          >
             <IconContainer>
               <Icon as={CodepenIcon} fontSize="20px" />
             </IconContainer>
@@ -168,7 +191,8 @@ const About: NextPage<{
           <LinkIcon
             target="_blank"
             href="https://www.goodreads.com/user/show/138401906-nicholas-biantoro"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+          >
             <IconContainer>
               <Icon as={BookIcon} fontSize="20px" />
             </IconContainer>
@@ -177,7 +201,8 @@ const About: NextPage<{
           <LinkIcon
             target="_blank"
             href="https://leetcode.com/torocholazzz/"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+          >
             <IconContainer>
               <Icon as={CodeIcon} fontSize="20px" />
             </IconContainer>
@@ -186,7 +211,8 @@ const About: NextPage<{
           <LinkIcon
             target="_blank"
             href="https://www.chess.com/member/cholazzzb"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+          >
             <IconContainer>
               <Icon as={ChessIcon} fontSize="20px" />
             </IconContainer>
@@ -194,7 +220,8 @@ const About: NextPage<{
           <LinkIcon
             target="_blank"
             href="https://musescore.com/user/35444237"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+          >
             <IconContainer>
               <Icon as={MusicIcon} fontSize="20px" />
             </IconContainer>
@@ -221,17 +248,13 @@ const About: NextPage<{
 
 export default About;
 
-const ProfileCard = mainTheme.styled('div', {
+const ProfileCard = mainTheme.styled(GlassCard, {
   width: '355px',
   height: '100%',
-  backgroundColor: 'rgba(0, 0, 0, 0.12)',
-  padding: '30px',
+  padding: '20px',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  borderRadius: '5px',
-  boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
-  transition: 'all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)',
   color: 'white',
 });
 
@@ -288,4 +311,41 @@ const LinkIcon = mainTheme.styled('a', {
   height: '25px',
   borderRadius: '50%',
   marginInlineEnd: '10px',
+});
+
+const ProfileIcon = mainTheme.styled(Center, {
+  width: '50px',
+  height: '50px',
+  borderRadius: '10px',
+  padding: '16px',
+  marginInlineEnd: '10px',
+});
+
+const ExperienceIconContainer = mainTheme.styled(ProfileIcon, {
+  backgroundColor: '$green10',
+});
+
+const ProjectIconContainer = mainTheme.styled(ProfileIcon, {
+  backgroundColor: '$blue10',
+});
+
+const PublicationIconContainer = mainTheme.styled(ProfileIcon, {
+  backgroundColor: '$gray10',
+});
+
+const AccomplishmentIconContainer = mainTheme.styled(ProfileIcon, {
+  backgroundColor: '$black10',
+});
+
+const RowCard = mainTheme.styled('div', {
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  width: '100%',
+  paddingInline: '5px',
+  paddingBlock: '2px',
+});
+
+const RowCardMain = mainTheme.styled(Center, {
+  height: '100%',
 });

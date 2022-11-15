@@ -5,11 +5,11 @@ import ExpCard from './ExpCard';
 import { Experience } from 'src/domains/experience/experienceEntity';
 
 type ExpModalProps = {
-  experiences: Array<Experience>
+  experiences: Array<Experience>;
   onClose: () => void;
 };
 
-const ExpModal = ({ experiences,onClose }: ExpModalProps) => {
+const ExpModal = ({ experiences, onClose }: ExpModalProps) => {
   return (
     <Modal>
       <ModalHeader onClose={onClose}>
