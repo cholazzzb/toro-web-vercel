@@ -2,14 +2,15 @@ import { mainTheme } from 'src/theme';
 
 type PlayerProps = {
   playerName: string;
+  color: string;
   active?: boolean;
 };
 
-const Player = ({ playerName, active }: PlayerProps) => {
+const Player = ({ playerName, color, active }: PlayerProps) => {
   const activePlayerStyle: Record<string, string> = {};
   if (active) {
     activePlayerStyle.border = '1px solid';
-    activePlayerStyle.borderColor = 'white';
+    activePlayerStyle.borderColor = color;
   }
 
   const PlayerRow = mainTheme.styled('div', {
@@ -23,6 +24,15 @@ const Player = ({ playerName, active }: PlayerProps) => {
     margin: '10px',
     borderRadius: '5px',
   });
+
+  const Avatar = mainTheme.styled('span', {
+    backgroundColor: active ? color : 'White',
+    height: '20px',
+    width: '20px',
+    borderRadius: '50%',
+    marginInlineEnd: '10px',
+  });
+
   return (
     <PlayerRow>
       <Avatar />
@@ -32,14 +42,6 @@ const Player = ({ playerName, active }: PlayerProps) => {
 };
 
 export default Player;
-
-const Avatar = mainTheme.styled('span', {
-  backgroundColor: 'white',
-  height: '20px',
-  width: '20px',
-  borderRadius: '50%',
-  marginInlineEnd: '10px',
-});
 
 const PlayerName = mainTheme.styled('p', {
   color: '$white10',

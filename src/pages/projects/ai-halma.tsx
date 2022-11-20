@@ -13,8 +13,9 @@ import BoardGame from 'components/projects/ai-halma/BoardGame';
 import {
   Board,
   MoveQueue,
+  PlayerIdx,
   Position,
-  Square,
+  Square
 } from 'src/domains/projects/ai-halma/AIHalmaEntity';
 import { getBestMove } from 'src/domains/projects/ai-halma/AIHalmaLogic';
 import { initialBoard } from 'src/domains/projects/ai-halma/gameSetting';
@@ -22,9 +23,16 @@ import { mainTheme } from 'src/theme';
 
 const AIHalma = () => {
   const [board, setBoard] = useState<Board>(initialBoard.twoPlayer);
-  const [gameState, setGameState] = useState<EGameState>(EGameState.PAUSED);
+  const [gameState, setGameState] = useState<EGameState>(
+    EGameState.NOT_STARTED,
+  );
+
   const toggleGameState = () => {
     switch (gameState) {
+      case EGameState.NOT_STARTED:
+        setGameState(EGameState.PLAYING);
+        break;
+
       case EGameState.PAUSED:
         setGameState(EGameState.PLAYING);
         break;
@@ -52,12 +60,22 @@ const AIHalma = () => {
   const [movesQueue, setMovesQueue] = useState<Array<MoveQueue>>([]);
   const timer = useRef<NodeJS.Timeout>();
 
-  const aiThink = () => {
+  const aiThink = (board: Board, turn: PlayerIdx) => {
     if (movesQueue.length > 0) {
       const newQueue = [...movesQueue];
       const move = newQueue.shift();
       move && movePiece(move.startPos, move.endPos);
       setMovesQueue(newQueue);
+      if (newQueue.length === 0) {
+        switch (turn) {
+          case Square.Player1:
+            setTurn(Square.Player2);
+            break;
+          case Square.Player2:
+            setTurn(Square.Player1);
+            break;
+        }
+      }
     } else {
       const bestMove = getBestMove(board, turn);
       const moveQueue: Array<MoveQueue> = [
@@ -73,14 +91,6 @@ const AIHalma = () => {
         });
       }
       setMovesQueue(moveQueue);
-      switch (turn) {
-        case Square.Player1:
-          setTurn(Square.Player2);
-          break;
-        case Square.Player2:
-          setTurn(Square.Player1);
-          break;
-      }
     }
   };
 
@@ -88,7 +98,7 @@ const AIHalma = () => {
     switch (gameState) {
       case EGameState.PLAYING: {
         timer.current = setTimeout(() => {
-          aiThink();
+          aiThink(board, turn);
         }, 1000);
         break;
       }
@@ -108,25 +118,39 @@ const AIHalma = () => {
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gameState, movesQueue]);
+  }, [turn, gameState, movesQueue]);
 
   return (
     <Layout>
-      <Player playerName="Player 1" active={turn === Square.Player1} />
+      <Player
+        playerName="Player 2"
+        color="$green10"
+        active={gameState !== EGameState.NOT_STARTED && turn === Square.Player2}
+      />
       <BoardGame boardData={board}></BoardGame>
-      <Player playerName="Player 2" active={turn === Square.Player2} />
+      <Player
+        playerName="Player 1"
+        color="$blue10"
+        active={gameState !== EGameState.NOT_STARTED && turn === Square.Player1}
+      />
       <Button onClick={toggleGameState}>
         {gameState === EGameState.PLAYING && (
-          <Icon>
-            <FontAwesomeIcon icon={faPause} />
-          </Icon>
+          <>
+            <Icon>
+              <FontAwesomeIcon icon={faPause} />
+            </Icon>
+            Pause
+          </>
         )}
-        {gameState === EGameState.PAUSED && (
-          <Icon>
-            <FontAwesomeIcon icon={faPlay} />
-          </Icon>
+        {(gameState === EGameState.NOT_STARTED ||
+          gameState === EGameState.PAUSED) && (
+          <>
+            <Icon>
+              <FontAwesomeIcon icon={faPlay} />
+            </Icon>
+            Start
+          </>
         )}
-        Start/Pause
       </Button>
     </Layout>
   );
