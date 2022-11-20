@@ -21,11 +21,11 @@ import { getBestMove } from 'src/domains/projects/ai-halma/AIHalmaLogic';
 import { initialBoard } from 'src/domains/projects/ai-halma/gameSetting';
 import { mainTheme } from 'src/theme';
 
-// export async function getStaticProps() {
-//   return {
-//     props: {},
-//   };
-// }
+export async function getStaticProps() {
+  return {
+    props: {},
+  };
+}
 
 const AIHalma = () => {
   const [board, setBoard] = useState<Board>(initialBoard.twoPlayer);
