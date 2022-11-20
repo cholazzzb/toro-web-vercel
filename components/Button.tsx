@@ -7,20 +7,10 @@ type FloatingButtonProps = {
   iconSrc: string;
 };
 export const FloatingButton = ({
-  color = "green",
   onClick,
   iconSrc,
 }: FloatingButtonProps) => {
-  let colorButton;
 
-  switch (color) {
-    case "green":
-      colorButton = styles.green;
-      break;
-
-    default:
-      break;
-  }
   return (
     <button
       className={`${styles.floatingButton} ${styles.green}`}
