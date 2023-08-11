@@ -1,11 +1,12 @@
 import { Text } from '@chakra-ui/react';
+import type { NextPage } from 'next';
+import Image from 'next/legacy/image';
+
 import { CardBody, CardHead } from 'components/Card';
-import AboutButton from 'components/home/AboutButton';
-import ProjectButton from 'components/home/ProjectButton';
 import ImageContainer from 'components/ImageContainer';
 import { Layout } from 'components/Layout';
-import type { NextPage } from 'next';
-import Image from 'next/image';
+import AboutButton from 'components/home/AboutButton';
+import ProjectButton from 'components/home/ProjectButton';
 import { GlassCard } from 'src/presentational/components';
 import { mainTheme } from 'src/theme';
 

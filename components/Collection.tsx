@@ -1,8 +1,8 @@
-import { Box } from "@chakra-ui/react";
-import { Children, ReactNode } from "react";
-import AutoSizer from "react-virtualized-auto-sizer";
-import { FixedSizeList as List } from "react-window";
-import styles from "./Collection.module.css";
+import { Box } from '@chakra-ui/react';
+import { Children, ReactNode } from 'react';
+import AutoSizer from 'react-virtualized-auto-sizer';
+import { FixedSizeList as List } from 'react-window';
+import styles from './Collection.module.css';
 
 type VerticalCollectionProps = {
   children: ReactNode;

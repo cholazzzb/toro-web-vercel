@@ -1,4 +1,9 @@
 import { Icon } from '@chakra-ui/react';
+import { NextPage } from 'next';
+import Image from 'next/legacy/image';
+import Link from 'next/link';
+import { useState } from 'react';
+
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AccompModal from 'components/about/AccompModal';
@@ -10,10 +15,6 @@ import Profile from 'components/home/Profile';
 import ImageContainer from 'components/ImageContainer';
 import { Layout } from 'components/Layout';
 import Typography from 'components/Typography';
-import { NextPage } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState } from 'react';
 import { BookIcon } from 'src/components/icon/BookIcon';
 import { BrainIcon } from 'src/components/icon/BrainIcon';
 import { ChessIcon } from 'src/components/icon/ChessIcon';
@@ -102,13 +103,11 @@ const About: NextPage<{
                 <Typography>Projects</Typography>
               </RowCardMain>
               <Link href="/projects">
-                <a>
-                  <ProfileDetailButton>
-                    <IconContainer>
-                      <FontAwesomeIcon icon={faChevronRight} />
-                    </IconContainer>
-                  </ProfileDetailButton>
-                </a>
+                <ProfileDetailButton>
+                  <IconContainer>
+                    <FontAwesomeIcon icon={faChevronRight} />
+                  </IconContainer>
+                </ProfileDetailButton>
               </Link>
             </CardHead>
           </RowCard>

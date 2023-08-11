@@ -1,4 +1,4 @@
-import styles from "./Animation.module.css";
+import styles from './Animation.module.css';
 
 type BlinkProps = {
   children: React.ReactNode;

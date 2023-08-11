@@ -1,16 +1,12 @@
-import Image from "next/image";
-import styles from "./Button.module.css";
+import Image from 'next/legacy/image';
+import styles from './Button.module.css';
 
 type FloatingButtonProps = {
   color?: string;
   onClick?: () => void;
   iconSrc: string;
 };
-export const FloatingButton = ({
-  onClick,
-  iconSrc,
-}: FloatingButtonProps) => {
-
+export const FloatingButton = ({ onClick, iconSrc }: FloatingButtonProps) => {
   return (
     <button
       className={`${styles.floatingButton} ${styles.green}`}
@@ -30,17 +26,17 @@ export const FloatingButton = ({
 
 type IconButtonProps = {
   color?: string;
-  size?: "small" | "medium" | "large";
+  size?: 'small' | 'medium' | 'large';
   iconSrc: string;
   onClick?: () => void;
 };
 export const IconButton = ({
-  color = "white",
-  size = "small",
+  color = 'white',
+  size = 'small',
   onClick,
   iconSrc,
 }: IconButtonProps) => {
-  const sizeVal = size === "small" ? 25 : size === "medium" ? 35 : 45;
+  const sizeVal = size === 'small' ? 25 : size === 'medium' ? 35 : 45;
 
   return (
     <button

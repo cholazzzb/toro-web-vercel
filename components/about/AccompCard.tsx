@@ -31,21 +31,18 @@ const AccompCard = ({ data }: AccompCardProps) => {
         <Typography>{data.description}</Typography>
         <Typography>
           See the idea:
-          <Link href={data.link}>
-            <a
-              className={styles.link}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {data.link}
-            </a>
+          <Link
+            href={data.link}
+            className={styles.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {data.link}
           </Link>
         </Typography>
         <Typography>
-          <Link href="/pdf/AIC.pdf">
-            <a target="_blank" rel="noopener noreferrer">
-              <IconButton iconSrc="/icons/link.svg" />
-            </a>
+          <Link href="/pdf/AIC.pdf" target="_blank" rel="noopener noreferrer">
+            <IconButton iconSrc="/icons/link.svg" />
           </Link>
         </Typography>
       </ColCard>

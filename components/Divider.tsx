@@ -1,7 +1,7 @@
-import styles from "./Divider.module.css";
+import styles from './Divider.module.css';
 
 type DividerProps = {
-  type: "horizontal" | "vertical";
+  type: 'horizontal' | 'vertical';
 };
 
 const Divider = ({ type }: DividerProps) => {

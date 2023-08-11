@@ -25,5 +25,5 @@
     "noUnusedParameters": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", ".next", ".storybook"]
+  "exclude": ["node_modules", ".contentlayer", ".next", ".storybook"]
 }

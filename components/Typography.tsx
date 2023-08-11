@@ -1,23 +1,23 @@
-import { ReactNode } from "react";
-import styles from "./Typography.module.css";
+import { ReactNode } from 'react';
+import styles from './Typography.module.css';
 
 type TypographyProps = {
   type?: string;
   children: ReactNode;
 };
 
-const Typography = ({ type="small", children }: TypographyProps) => {
+const Typography = ({ type = 'small', children }: TypographyProps) => {
   let textStyle;
   switch (type) {
-    case "animated-text":
+    case 'animated-text':
       textStyle = styles.animatedText;
       break;
 
-    case "small":
+    case 'small':
       textStyle = styles.small;
       break;
 
-    case "large":
+    case 'large':
       textStyle = styles.large;
       break;
 

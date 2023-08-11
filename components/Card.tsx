@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import styles from "./Card.module.css";
+import { ReactNode } from 'react';
+import styles from './Card.module.css';
 
 type CardProps = {
   width?: number;
@@ -15,11 +15,11 @@ export const Card = ({ width = 300, children }: CardProps) => {
 
 type CardHeadProps = {
   children?: ReactNode;
-  justify?: "justifyCenter" | "justifyBetween";
+  justify?: 'justifyCenter' | 'justifyBetween';
 };
 export const CardHead = ({
   children,
-  justify = "justifyCenter",
+  justify = 'justifyCenter',
 }: CardHeadProps) => {
   return (
     <div className={`${styles.cardHead} ${styles[justify]}`}>{children}</div>
@@ -38,10 +38,10 @@ export const RowCard = ({ children }: RowCardProps) => {
 };
 
 type ColCardProps = {
-  padding?: "small" | "medium" | "large";
+  padding?: 'small' | 'medium' | 'large';
   children?: ReactNode;
 };
-export const ColCard = ({ padding = "small", children }: ColCardProps) => {
+export const ColCard = ({ padding = 'small', children }: ColCardProps) => {
   return (
     <div className={`${styles.colCard} ${styles[padding]}`}>{children}</div>
   );

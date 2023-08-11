@@ -15,7 +15,7 @@ import {
   MoveQueue,
   PlayerIdx,
   Position,
-  Square
+  Square,
 } from 'src/domains/projects/ai-halma/AIHalmaEntity';
 import { getBestMove } from 'src/domains/projects/ai-halma/AIHalmaLogic';
 import { initialBoard } from 'src/domains/projects/ai-halma/gameSetting';

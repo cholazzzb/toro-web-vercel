@@ -30,10 +30,8 @@ const ExpCard = ({ data }: ExpCardProps) => {
           <Typography key={task}>{task}</Typography>
         ))}
         <Typography>Tech Stacks: {data.techs}</Typography>
-        <Link href="/pdf/webTA.pdf">
-          <a target="_blank" rel="noopener noreferrer">
-            <IconButton iconSrc="/icons/link.svg" />
-          </a>
+        <Link href="/pdf/webTA.pdf" target="_blank" rel="noopener noreferrer">
+          <IconButton iconSrc="/icons/link.svg" />
         </Link>
       </ColCard>
     </div>

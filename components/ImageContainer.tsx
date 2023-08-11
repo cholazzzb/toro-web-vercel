@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import styles from "./ImageContainer.module.css";
+import { ReactNode } from 'react';
+import styles from './ImageContainer.module.css';
 
 type ImageContainerProps = {
   size: number;
@@ -10,7 +10,7 @@ type ImageContainerProps = {
 const ImageContainer = ({ size, shape, children }: ImageContainerProps) => {
   let containerStyle;
   switch (shape) {
-    case "round":
+    case 'round':
       containerStyle = styles.round;
       break;
 

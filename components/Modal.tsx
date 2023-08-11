@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
-import { IconButton } from "./Button";
-import styles from "./Modal.module.css";
+import { ReactNode } from 'react';
+import { IconButton } from './Button';
+import styles from './Modal.module.css';
 
 type ModalProps = {
   children: ReactNode;
