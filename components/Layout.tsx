@@ -1,6 +1,7 @@
 import { keyframes } from '@stitches/react';
 import Head from 'next/head';
 import { ReactNode } from 'react';
+
 import { mainTheme } from 'src/theme';
 
 type LayoutProps = {
@@ -23,7 +24,7 @@ export const Layout = ({ children }: LayoutProps) => {
         <Top />
         <Bottom />
         <Left />
-        <Right />{' '}
+        <Right />
       </BackgroundAnimation>
       <Main>{children}</Main>
     </div>
@@ -34,13 +35,13 @@ const Main = mainTheme.styled('main', {
   zIndex: 1,
   position: 'absolute',
   width: '100vw',
-  minHeight: '100vh',
-  padding: '4rem 0',
+  maxHeight: '100vh',
+  paddingBlock: '4rem',
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
   alignItems: 'center',
+  overflowY: 'scroll',
 });
 
 const BackgroundAnimation = mainTheme.styled('div', {

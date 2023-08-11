@@ -1,3 +1,4 @@
+import { Flex, Text } from '@chakra-ui/react';
 import { Blog, allBlogs } from 'contentlayer/generated';
 import {
   GetStaticPaths,
@@ -6,6 +7,9 @@ import {
 } from 'next';
 
 import { Layout } from 'components/Layout';
+import { useCallback, useState } from 'react';
+import NavButton from 'src/components/NavButton';
+import Show from 'src/components/Show';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -38,17 +42,33 @@ export const getStaticProps = async (
 };
 
 const PostLayout = (props: { blog: Blog }) => {
+  const [openModal, setOpenModal] = useState(false);
+  const toggleModal = useCallback(() => {
+    setOpenModal((prev) => !prev);
+  }, []);
+
   return (
     <Layout>
-      <article>
-        <div>
-          <time dateTime={props.blog.date}>
-            Date: {new Date(props.blog.date).toLocaleDateString()}
-          </time>
-          <h1>{props.blog.title}</h1>
-        </div>
-        <div dangerouslySetInnerHTML={{ __html: props.blog.body.html }} />
-      </article>
+      <Show when={!openModal}>
+        <Flex marginX="10">
+          <article>
+            <div>
+              <Text fontSize={20} fontWeight="bold">
+                {props.blog.title}
+              </Text>
+              <time dateTime={props.blog.date}>
+                <Text fontSize={12}>
+                  {new Date(props.blog.date).toLocaleDateString()}
+                </Text>
+              </time>
+            </div>
+            <Flex marginTop={10}>
+              <div dangerouslySetInnerHTML={{ __html: props.blog.body.html }} />
+            </Flex>
+          </article>
+        </Flex>
+      </Show>
+      <NavButton open={openModal} onClick={toggleModal} />
     </Layout>
   );
 };
