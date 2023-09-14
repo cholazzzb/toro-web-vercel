@@ -1,5 +1,6 @@
-import { Flex } from '@chakra-ui/react';
 import { PropsWithChildren } from 'react';
+
+import { Glassy } from './Glass';
 
 type RoundButtonProps = {
   onClick?: () => void;
@@ -7,18 +8,19 @@ type RoundButtonProps = {
 
 function RoundButton(props: PropsWithChildren<RoundButtonProps>) {
   return (
-    <Flex
-      width={50}
-      height={50}
+    <Glassy
+      display="flex"
+      width="70px"
+      height="70px"
       borderRadius="50%"
       borderColor="rgba(255,255,255,0.8)"
-      borderWidth={3}
-      backgroundColor="rgba(255,255,255,0.1)"
+      borderWidth="2px"
       justifyContent="center"
       alignItems="center"
-      onClick={props.onClick}>
+      onClick={props.onClick}
+    >
       {props.children}
-    </Flex>
+    </Glassy>
   );
 }
 

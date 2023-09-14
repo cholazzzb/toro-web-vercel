@@ -1,18 +1,22 @@
-import { Flex, Text } from '@chakra-ui/react';
 import {
   faClose,
+  faGlobeAsia,
   faHome,
-  faPaperPlane,
   faPenNib,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { PropsWithChildren } from 'react';
 
+import { Flex } from 'styled-system/jsx';
+import { Glassy } from './Glass';
 import RoundButton from './RoundButton';
 import Show from './Show';
+import { Text } from './Text';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from './Breadcrumb';
 
 type NavButtonProps = {
+  breadcrumbItems?: Array<{ url: string; text: string }>;
   open: boolean;
   onClick: () => void;
 };
@@ -26,13 +30,14 @@ function NavButton(props: PropsWithChildren<NavButtonProps>) {
           width="full"
           height="100vh"
           alignItems="center"
-          justifyContent="center">
+          justifyContent="center"
+        >
           <Flex justifyContent="center" marginRight={10}>
             <Link href="/">
               <RoundButton>
                 <FontAwesomeIcon icon={faHome} height={25} width={25} />
               </RoundButton>
-              <Text textAlign="center">Home</Text>
+              <Text center>Home</Text>
             </Link>
           </Flex>
 
@@ -41,28 +46,64 @@ function NavButton(props: PropsWithChildren<NavButtonProps>) {
               <RoundButton>
                 <FontAwesomeIcon icon={faPenNib} height={25} width={25} />
               </RoundButton>
-              <Text textAlign="center">Blog</Text>
+              <Text center>Blog</Text>
             </Link>
           </Flex>
         </Flex>
       </Show>
       <Flex
+        flexDirection="row-reverse"
+        justifyContent="space-between"
+        alignItems="center"
         zIndex={200}
         position="fixed"
         bottom={3}
-        right={6}
-        borderRadius="50%"
-        backgroundColor="rgba(255,255,255,0.3)"
-        color="white"
-        alignItems="center"
-        justifyContent="center">
-        <RoundButton onClick={props.onClick}>
-          <FontAwesomeIcon
-            icon={props.open ? faClose : faPaperPlane}
-            height={25}
-            width={25}
-          />
-        </RoundButton>
+        width="100%"
+        paddingInline="28px"
+      >
+        <Flex
+          borderRadius="50%"
+          backgroundColor="rgba(255,255,255,0.1)"
+          color="white"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <RoundButton onClick={props.onClick}>
+            <FontAwesomeIcon
+              icon={props.open ? faClose : faGlobeAsia}
+              height={25}
+              width={25}
+            />
+          </RoundButton>
+        </Flex>
+        <Show when={!!props.breadcrumbItems}>
+          <Glassy
+            backgroundColor="rgba(255,255,255,0.3)"
+            width="100%"
+            padding="10px"
+            marginInlineEnd="10px"
+            borderRightRadius="20px"
+          >
+            <Breadcrumb>
+              {props.breadcrumbItems?.map((bci, idx) => {
+                const isCurrentPage = idx + 1 === props.breadcrumbItems?.length;
+                return (
+                  <BreadcrumbItem
+                    key={bci.url + bci.text}
+                    isCurrentPage={isCurrentPage}
+                  >
+                    <BreadcrumbLink
+                      href={bci.url}
+                      textDecoration={isCurrentPage ? 'underline' : 'none'}
+                    >
+                      {bci.text}
+                    </BreadcrumbLink>
+                  </BreadcrumbItem>
+                );
+              })}
+            </Breadcrumb>
+          </Glassy>
+        </Show>
       </Flex>
     </>
   );
