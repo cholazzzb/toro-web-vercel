@@ -2,6 +2,7 @@
   "name": "toro-web-vercel",
   "private": true,
   "scripts": {
+    "prepare": "panda codegen",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
