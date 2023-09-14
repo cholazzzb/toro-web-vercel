@@ -1,5 +1,7 @@
+const { withContentlayer } = require('next-contentlayer');
+
 /** @type {import('next').NextConfig} */
-module.exports = {
+const nextConfig = {
   reactStrictMode: true,
   webpack: (config) => {
     config.module.rules.push({
@@ -14,3 +16,5 @@ module.exports = {
     return config;
   },
 };
+
+module.exports = withContentlayer(nextConfig)

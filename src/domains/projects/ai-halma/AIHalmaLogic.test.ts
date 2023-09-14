@@ -3,7 +3,7 @@ import {
   // getBestMove,
   // getMostGreedyMove
   getLegalJumpMoves,
-  getLegalStepMoves
+  getLegalStepMoves,
 } from './AIHalmaLogic';
 import { initialBoard } from './gameSetting';
 

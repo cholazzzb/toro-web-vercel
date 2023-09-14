@@ -1,0 +1,95 @@
+---
+title: Animated Radar Chart with React Native Skia Part 1
+date: 2023-08-11
+---
+
+In this blog, I will share about how to build animated radar chart with React Native Skia.
+
+<Image
+  src="/images/blogs/animated-radar-chart-with-rn-skia/pokemon-detail-status-animate.gif"
+  alt="Picture 1. Animated Radar Chart"
+  width={200}
+  height={400}
+  ratio={{ base: 0.5, md: 0.5 }}
+  caption="Picture 1. Animated Radar Chart"
+/>
+
+<A href="https://github.com/Shopify/react-native-skia">React Native Skia</A> is a rendering engine built from Shopify.
+I use some maths and geometry to accomplish this. Don't worry! It is not difficult.
+
+First, think how to draw polygon in coordinate.
+Imagine a circle, the polygon has a difference of 360degree/number of corner by the center of the circle.
+Or simply using basic trigonometry in the code below.
+
+```tsx
+// shape.ts
+type Degree = number;
+type Rad = number;
+
+/**
+ * to convert degree to rad because `Math.sin` and `Math.cos` parameter use rad
+ */
+function toRad (deg: Degree): Rad {
+  return (degree * Math.PI); / 180;
+}
+
+/**
+ * to calculate polygon position in cartesian coordinate
+ */
+function calculatePolygonPos(
+  length: number,
+  origin: number,
+  deg: Degree,
+): { x: number, y: number } {
+  return {
+    x: origin + Math.sin(toRad(deg % 360)) * length,
+    y: origin - Math.cos(toRad(deg % 360)) * length,
+  }
+}
+
+```
+
+I use react-native-skia to draw the points on the screen.
+So we need to import vec from the react-native-skia as a point.
+and export it because we will use it to calculate the polygon for the diagram.
+
+```tsx
+import { vec } from '@shopify/react-native-skia';
+
+export function createPolygonPoints(
+  length: number,
+  origin: number,
+  numOfCorner: number,
+) {
+  return Array(numOfCorner + 1)
+    .fill(0)
+    .map((_, idx) => {
+      const pos = calculatePolygonPos(
+        length,
+        origin,
+        (360 / numOfCorner) * idx,
+      );
+      return vec(pos.x, pos.y);
+    });
+}
+```
+
+```tsx
+export type StatusArr = Array<number>;
+export const createStatusPolygonPath = (
+  length: StatusArr,
+  origin: number,
+  timing: number,
+  numOfCorner: number,
+) => {
+  return length.reduce((current, l, idx) => {
+    const pos = calculatePolygonPos(
+      l * timing,
+      origin,
+      (360 / numOfCorner) * idx,
+    );
+    current.lineTo(pos.x, pos.y);
+    return current;
+  }, Skia.Path.Make());
+};
+```
