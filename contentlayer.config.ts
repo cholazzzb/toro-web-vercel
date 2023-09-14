@@ -1,85 +1,83 @@
-import { defineDocumentType, makeSource } from 'contentlayer/source-files';
+import {
+  ComputedFields,
+  defineDocumentType,
+  makeSource,
+} from 'contentlayer/source-files';
+import readingTime from 'reading-time';
+import rehypePrism from 'rehype-prism-plus';
+
+const computedFields: ComputedFields = {
+  readingTime: {
+    type: 'json',
+    resolve: (doc) => readingTime(doc.body.raw, { wordsPerMinute: 150 }),
+  },
+  slug: {
+    type: 'string',
+    resolve: (doc) => doc._raw.sourceFileName.replace(/\.mdx$/, ''),
+  },
+};
 
 export const Accomplishments = defineDocumentType(() => ({
   name: 'Accomplishments',
-  filePathPattern: `accomplishments/**/*.md`,
+  filePathPattern: `accomplishments/**/*.mdx`,
+  contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
     date: { type: 'date', required: true },
     icon: { type: 'string', required: true },
     location: { type: 'string', required: true },
   },
-  computedFields: {
-    url: {
-      type: 'string',
-      resolve: (accomplishment) =>
-        `accomplishments/${accomplishment._raw.flattenedPath}`,
-    },
-  },
+  computedFields,
 }));
 
 export const Blog = defineDocumentType(() => ({
   name: 'Blog',
-  filePathPattern: `blogs/**/*.md`,
+  filePathPattern: `blogs/**/*.mdx`,
+  contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
     date: { type: 'date', required: true },
   },
-  computedFields: {
-    url: {
-      type: 'string',
-      resolve: (blog) => `blogs/${blog._raw.flattenedPath}`,
-    },
-  },
+  computedFields,
 }));
 
 export const Experiences = defineDocumentType(() => ({
   name: 'Experiences',
-  filePathPattern: `experiences/**/*.md`,
+  filePathPattern: `experiences/**/*.mdx`,
+  contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
     date: { type: 'date', required: true },
   },
-  computedFields: {
-    url: {
-      type: 'string',
-      resolve: (experience) => `experiences/${experience._raw.flattenedPath}`,
-    },
-  },
+  computedFields,
 }));
 
 export const Project = defineDocumentType(() => ({
   name: 'Project',
-  filePathPattern: `projects/**/*.md`,
+  filePathPattern: `projects/**/*.mdx`,
+  contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
     date: { type: 'string', required: true },
   },
-  computedFields: {
-    url: {
-      type: 'string',
-      resolve: (project) => `projects/${project._raw.flattenedPath}`,
-    },
-  },
+  computedFields,
 }));
 
 export const Publications = defineDocumentType(() => ({
   name: 'Publications',
-  filePathPattern: `publications/**/*.md`,
+  filePathPattern: `publications/**/*.mdx`,
+  contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
     date: { type: 'date', required: true },
   },
-  computedFields: {
-    url: {
-      type: 'string',
-      resolve: (publication) =>
-        `publications/${publication._raw.flattenedPath}`,
-    },
-  },
+  computedFields,
 }));
 
 export default makeSource({
   contentDirPath: 'contents',
   documentTypes: [Accomplishments, Blog, Experiences, Project, Publications],
+  mdx: {
+    rehypePlugins: [rehypePrism],
+  },
 });
