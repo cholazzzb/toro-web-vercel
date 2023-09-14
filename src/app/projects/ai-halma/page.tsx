@@ -18,12 +18,6 @@ import Player from 'src/domains/projects/ai-halma/components/Player';
 import { initialBoard } from 'src/domains/projects/ai-halma/gameSetting';
 import { styled } from 'styled-system/jsx';
 
-export async function getStaticProps() {
-  return {
-    props: {},
-  };
-}
-
 const AIHalma = () => {
   const [board, setBoard] = useState<Board>(initialBoard.twoPlayer);
   const [gameState, setGameState] = useState<EGameState>(
