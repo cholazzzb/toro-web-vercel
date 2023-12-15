@@ -1,0 +1,11 @@
+---
+title: Git Usecase
+---
+
+1. Have dependencies from other non-root branch and merged to root
+```git
+git checkout root // go to root branch
+git pull // update
+git checkout -b your-new-branch 
+git pull origin your-friend-branch --rebase // that's it
+``` 
