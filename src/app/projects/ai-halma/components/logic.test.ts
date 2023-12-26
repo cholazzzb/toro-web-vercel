@@ -1,12 +1,12 @@
-import { EMoveType } from './@enum';
+import { EMoveType } from '../../../../domains/projects/ai-halma/@enum';
 import { CInitBoard4Players } from './constants';
 import {
   calcDisVec,
+  isFinished,
   isInsideBoard,
   isSquareEmpty,
   isValidMove,
   movePiece,
-  isFinished,
 } from './logic';
 
 describe('test calcDisVec function', () => {

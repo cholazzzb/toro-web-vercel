@@ -4,6 +4,9 @@ import { faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PropsWithChildren, useEffect, useRef, useState } from 'react';
 
+import BoardGame from 'src/app/projects/ai-halma/components/BoardGame';
+import Player from 'src/app/projects/ai-halma/components/Player';
+import { EGameState } from 'src/domains/projects/ai-halma/@enum';
 import {
   Board,
   MoveQueue,
@@ -12,9 +15,6 @@ import {
   Square,
 } from 'src/domains/projects/ai-halma/AIHalmaEntity';
 import { getBestMove } from 'src/domains/projects/ai-halma/AIHalmaLogic';
-import { EGameState } from 'src/domains/projects/ai-halma/components/@enum';
-import BoardGame from 'src/domains/projects/ai-halma/components/BoardGame';
-import Player from 'src/domains/projects/ai-halma/components/Player';
 import { initialBoard } from 'src/domains/projects/ai-halma/gameSetting';
 import { styled } from 'src/styled-system/jsx';
 

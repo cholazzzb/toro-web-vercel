@@ -1,8 +1,9 @@
+import 'src/styles/prism.css';
+
 import { Metadata } from 'next';
 import { PropsWithChildren, ReactNode } from 'react';
 
 import { css } from 'src/styled-system/css';
-import 'src/styles/prism.css';
 
 export const metadata: Metadata = {
   title: 'Toro-web',
