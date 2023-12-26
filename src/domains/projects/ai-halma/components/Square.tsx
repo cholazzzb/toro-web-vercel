@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { styled } from 'styled-system/jsx';
+import { styled } from 'src/styled-system/jsx';
 
 type SquareProps = {
   piece: number;

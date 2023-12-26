@@ -2,8 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FunctionComponent, forwardRef } from 'react';
 
-import { Flex, Stack, styled } from 'styled-system/jsx';
-import { aspectRatio } from 'styled-system/patterns';
+import { Flex, Stack, styled } from 'src/styled-system/jsx';
+import { aspectRatio } from 'src/styled-system/patterns';
 
 const StyledLink = forwardRef<HTMLAnchorElement, any>(function StyledLink(
   props,

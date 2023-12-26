@@ -1,6 +1,6 @@
 import { ComponentProps } from 'react';
-import { css } from 'styled-system/css';
-import { Flex } from 'styled-system/jsx';
+import { css } from 'src/styled-system/css';
+import { Flex } from 'src/styled-system/jsx';
 
 export function Glassy(props: ComponentProps<typeof Flex>) {
   const { children, ...rest } = props;

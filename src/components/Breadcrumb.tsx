@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { PropsWithChildren } from 'react';
 
-import { Flex } from 'styled-system/jsx';
+import { css } from 'src/styled-system/css';
+import { Flex } from 'src/styled-system/jsx';
 import { Text } from './Text';
-import { css } from 'styled-system/css';
 
 export function Breadcrumb(props: PropsWithChildren) {
   return <Flex>{props.children}</Flex>;

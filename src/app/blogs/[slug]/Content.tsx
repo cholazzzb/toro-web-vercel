@@ -8,7 +8,7 @@ import NavButton from 'src/components/NavButton';
 import Show from 'src/components/Show';
 import { Text } from 'src/components/Text';
 import MDXComponents from 'src/components/mdx-components';
-import { Flex, styled } from 'styled-system/jsx';
+import { Flex, styled } from 'src/styled-system/jsx';
 
 type ContentProps = {
   blog: Blog;

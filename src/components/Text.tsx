@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { TextVariant, text } from 'styled-system/recipes';
+import { TextVariant, text } from 'src/styled-system/recipes';
 
 type TextProps = PropsWithChildren<Partial<TextVariant>>;
 export function Text(props: TextProps) {

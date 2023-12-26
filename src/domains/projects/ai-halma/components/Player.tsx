@@ -1,4 +1,4 @@
-import { styled } from 'styled-system/jsx';
+import { styled } from 'src/styled-system/jsx';
 
 type PlayerProps = {
   playerName: string;

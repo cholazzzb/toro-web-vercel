@@ -8,7 +8,7 @@ import { Glassy } from 'src/components/Glass';
 import NavButton from 'src/components/NavButton';
 import Show from 'src/components/Show';
 import { Text } from 'src/components/Text';
-import { Flex } from 'styled-system/jsx';
+import { Flex } from 'src/styled-system/jsx';
 
 const Home: NextPage = () => {
   const [openModal, setOpenModal] = useState(false);

@@ -16,7 +16,7 @@ import { EGameState } from 'src/domains/projects/ai-halma/components/@enum';
 import BoardGame from 'src/domains/projects/ai-halma/components/BoardGame';
 import Player from 'src/domains/projects/ai-halma/components/Player';
 import { initialBoard } from 'src/domains/projects/ai-halma/gameSetting';
-import { styled } from 'styled-system/jsx';
+import { styled } from 'src/styled-system/jsx';
 
 const AIHalma = () => {
   const [board, setBoard] = useState<Board>(initialBoard.twoPlayer);

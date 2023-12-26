@@ -1,7 +1,7 @@
 import Square from './Square';
 
 import { Board } from 'src/domains/projects/ai-halma/AIHalmaEntity';
-import { Flex, styled } from 'styled-system/jsx';
+import { Flex, styled } from 'src/styled-system/jsx';
 
 type BoardGameProps = {
   boardData: Board;

@@ -8,12 +8,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { PropsWithChildren } from 'react';
 
-import { Flex } from 'styled-system/jsx';
+import { Flex } from 'src/styled-system/jsx';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from './Breadcrumb';
 import { Glassy } from './Glass';
 import RoundButton from './RoundButton';
 import Show from './Show';
 import { Text } from './Text';
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from './Breadcrumb';
 
 type NavButtonProps = {
   breadcrumbItems?: Array<{ url: string; text: string }>;
