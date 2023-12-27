@@ -1,6 +1,10 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "prettier"
-  ]
+  "extends": ["next/core-web-vitals", "prettier"],
+  "rules": {
+    "no-console": "warn",
+    "eqeqeq": ["error", "always"],
+    "react-hooks/exhaustive-deps": "off",
+    "react/display-name": "off",
+    "no-underscore-dangle": "off"
+  }
 }
