@@ -1,5 +1,6 @@
 import { defineConfig, defineGlobalStyles } from '@pandacss/dev';
 
+import { buttonRecipe } from 'src/components/recipes/button';
 import { textRecipe } from 'src/components/recipes/text';
 
 const globalCss = defineGlobalStyles({
@@ -73,6 +74,7 @@ export default defineConfig({
     extend: {
       recipes: {
         text: textRecipe,
+        button: buttonRecipe,
       },
       keyframes: {
         moveDown: {

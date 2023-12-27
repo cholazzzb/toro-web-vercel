@@ -19,11 +19,12 @@ const Player = ({ playerName, color, active }: PlayerProps) => {
       display="flex"
       alignItems="center"
       padding="10px"
-      backgroundColor="$gray3"
       width="316px"
       height="40px"
       margin="10px"
       borderRadius="5px"
+      borderWidth="1px"
+      borderColor="white"
     >
       <styled.span
         backgroundColor={active ? color : 'White'}

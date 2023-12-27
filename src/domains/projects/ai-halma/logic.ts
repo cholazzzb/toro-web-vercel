@@ -1,4 +1,4 @@
-import { EMoveType } from '../../../../domains/projects/ai-halma/@enum';
+import { EMoveType } from './@enum';
 import { CEndPosition } from './constants';
 
 export const calcDisVec = (pos1: IPosition, pos2: IPosition): IPosition => {

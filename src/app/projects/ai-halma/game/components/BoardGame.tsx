@@ -1,5 +1,3 @@
-'use client';
-
 import Square from './Square';
 
 import { Board } from 'src/domains/projects/ai-halma/AIHalmaEntity';

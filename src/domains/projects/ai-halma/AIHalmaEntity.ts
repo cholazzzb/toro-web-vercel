@@ -8,6 +8,8 @@ export enum Square {
   Player4,
 }
 export type Board = Array<Array<Square>>;
+export type PlayerType = 'AI' | 'Human';
+
 export type PlayerIdx =
   | Square.Player1
   | Square.Player2

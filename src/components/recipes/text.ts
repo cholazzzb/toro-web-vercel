@@ -5,6 +5,10 @@ export const textRecipe = defineRecipe({
   description: 'The styles for the Text component',
   base: {},
   variants: {
+    weight: {
+      regular: { fontWeight: 300 },
+      bold: { fontWeight: 500 },
+    },
     size: {
       sm: { fontSize: '16px' },
       lg: {
@@ -20,5 +24,6 @@ export const textRecipe = defineRecipe({
   },
   defaultVariants: {
     size: 'sm',
+    weight: "regular"
   },
 });
