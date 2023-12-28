@@ -110,9 +110,7 @@ export const getLegalJumpMoves = (
   });
 
   while (sequences.length > 0) {
-    const sequence = sequences.shift();
-    if (!sequence) break;
-    let variant = 0;
+    const sequence = sequences.shift()!;
 
     for (const direction of directions) {
       const newSequence = [...sequence];
@@ -125,19 +123,16 @@ export const getLegalJumpMoves = (
         newSequence.push(newPosition);
         markedBoard[newPosition.y][newPosition.x] = playerIdx;
         sequences.push(newSequence);
-        variant++;
       }
     }
 
-    if (variant === 0) {
-      moves.push({
-        playerIdx,
-        startPosition: position,
-        endPosition: sequence[sequence.length - 1],
-        type: MoveType.JUMP,
-        sequence,
-      });
-    }
+    moves.push({
+      playerIdx,
+      startPosition: position,
+      endPosition: sequence[sequence.length - 1],
+      type: MoveType.JUMP,
+      sequence,
+    });
   }
 
   return moves;
