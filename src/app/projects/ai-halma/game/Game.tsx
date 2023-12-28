@@ -27,12 +27,14 @@ export function Game(props: Props) {
         playerName="Player 2"
         color="pink.600"
         active={turn === Square.Player2}
+        playerType={props.config.players[Square.Player2 - 1]}
       />
       <BoardGame turn={turn} endTurn={endTurn} />
       <Player
         playerName="Player 1"
         color="indigo.500"
         active={turn === Square.Player1}
+        playerType={props.config.players[Square.Player1 - 1]}
       />
     </GameContext.Provider>
   );

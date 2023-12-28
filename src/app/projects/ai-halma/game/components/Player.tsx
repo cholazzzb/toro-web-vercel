@@ -1,31 +1,17 @@
+import { PlayerType } from 'src/domains/projects/ai-halma/AIHalmaEntity';
+import { cva } from 'src/styled-system/css';
 import { styled } from 'src/styled-system/jsx';
 
 type PlayerProps = {
   playerName: string;
   color: string;
   active?: boolean;
+  playerType: PlayerType;
 };
 
-const Player = ({ playerName, color, active }: PlayerProps) => {
-  const activePlayerStyle: Record<string, string> = {};
-  if (active) {
-    activePlayerStyle.border = '1px solid';
-    activePlayerStyle.borderColor = color;
-  }
-
+const Player = ({ playerName, color, active, playerType }: PlayerProps) => {
   return (
-    <styled.div
-      {...activePlayerStyle}
-      display="flex"
-      alignItems="center"
-      padding="10px"
-      width="316px"
-      height="40px"
-      margin="10px"
-      borderRadius="5px"
-      borderWidth="1px"
-      borderColor="white"
-    >
+    <styled.div className={containerCVA({ active })}>
       <styled.span
         backgroundColor={active ? color : 'White'}
         height="20px"
@@ -33,9 +19,31 @@ const Player = ({ playerName, color, active }: PlayerProps) => {
         borderRadius="50%"
         marginInlineEnd="10px"
       />
-      <styled.p color="white">{playerName}</styled.p>
+      <styled.p color="white">
+        {playerName} - {playerType}
+      </styled.p>
     </styled.div>
   );
 };
 
 export default Player;
+
+const containerCVA = cva({
+  base: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '10px',
+    width: '316px',
+    height: '40px',
+    margin: '10px',
+    borderRadius: '5px',
+  },
+  variants: {
+    active: {
+      true: {
+        border: '1px solid',
+        borderColor: 'white',
+      },
+    },
+  },
+});
