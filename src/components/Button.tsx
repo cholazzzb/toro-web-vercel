@@ -7,10 +7,10 @@ type ButtonProps = { onClick?: () => void } & PropsWithChildren<
   Partial<ButtonVariant>
 >;
 export function Button(props: ButtonProps) {
-  const { onClick, ...restProps } = props;
+  const { onClick, children, ...restProps } = props;
   return (
     <PureGlassy className={button(restProps)} onClick={onClick}>
-      {props.children}
+      {children}
     </PureGlassy>
   );
 }

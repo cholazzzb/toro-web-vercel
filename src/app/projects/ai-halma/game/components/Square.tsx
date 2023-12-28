@@ -1,6 +1,6 @@
 'use client';
 
-import { memo } from 'react';
+import { memo, useContext } from 'react';
 
 import Show from 'src/components/Show';
 import {
@@ -17,6 +17,8 @@ import { Flex } from 'src/styled-system/jsx';
 import { usePossibleMoveMap } from '../hook/usePossibleMoveMap';
 import { Turn } from '../Game';
 import { convertMoveToMovesQueue } from 'src/domains/projects/ai-halma/AIHalmaLogic';
+import { colorTheme } from 'src/theme';
+import { GameContext } from '../context/game';
 
 type SquareProps = {
   turn: Turn;
@@ -44,6 +46,9 @@ const Square = memo(
     animateMove,
     possibleMove,
   }: SquareProps) => {
+    const game = useContext(GameContext);
+    const humanTurn = game.config.players[turn - 1] === 'Human';
+
     const enable = piece === 0 || turn === piece;
     const emptyPiece = piece === 0;
 
@@ -90,7 +95,9 @@ const Square = memo(
           onCancelPiece();
           return;
         }
-        onSelectPiece();
+        if (humanTurn) {
+          onSelectPiece();
+        }
       }
     };
     return (
@@ -122,13 +129,7 @@ const pieceCVA = cva({
     borderRadius: '50%',
   },
   variants: {
-    kind: {
-      0: { backgroundColor: 'black' },
-      1: { backgroundColor: 'indigo.500' },
-      2: { backgroundColor: 'pink.600' },
-      3: { backgroundColor: 'green' },
-      4: { backgroundColor: 'blue' },
-    },
+    kind: colorTheme,
   },
   defaultVariants: {
     kind: 0,
