@@ -16,12 +16,26 @@ export type PlayerIdx =
   | Square.Player3
   | Square.Player4;
 
+/**
+ * @description
+ * - x: horizontal axis or rowIdx
+ * - y: vertical axis or colIdx
+ */
 export type Position = {
   x: number;
   y: number;
 };
 
 export type PositionDistance = Position;
+
+/**
+ * @description format= `${x}-${y}` or `${rowIdx}-${colIdx}`
+ */
+export type EndPositionKey = string;
+/**
+ * @description format= `${x}-${y}` or `${rowIdx}-${colIdx}`
+ */
+export type InitialPositionKey = string;
 
 export enum MoveType {
   STEP,

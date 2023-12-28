@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { PlayerType } from 'src/domains/projects/ai-halma/AIHalmaEntity';
 
-type Config = {
+export type Config = {
   players: Array<PlayerType>;
 };
 export type GameConfig = ReturnType<typeof useGameConfig>;

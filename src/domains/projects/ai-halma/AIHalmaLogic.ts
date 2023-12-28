@@ -2,6 +2,7 @@ import {
   Board,
   BoardSize,
   Move,
+  MoveQueue,
   Moves,
   MoveType,
   PlayerIdx,
@@ -142,6 +143,23 @@ export const getLegalJumpMoves = (
   return moves;
 };
 
+export function convertMoveToMovesQueue(move: Move): Array<MoveQueue> {
+  const moveQueue: Array<MoveQueue> = [
+    {
+      startPos: move.startPosition,
+      endPos: move.sequence[0],
+    },
+  ];
+  for (let idx = 1; idx < move.sequence.length; idx++) {
+    moveQueue.push({
+      startPos: move.sequence[idx - 1],
+      endPos: move.sequence[idx],
+    });
+  }
+  return moveQueue;
+}
+
+// AI Bot
 export const getMostGreedyMove = (moves: Moves, playerIdx: PlayerIdx): Move => {
   if (moves.length === 1) {
     return moves[0];

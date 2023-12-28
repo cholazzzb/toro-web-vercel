@@ -32,7 +32,7 @@ const renderGame = (game: {
       return <Setup onClickStart={onClickStart} />;
     }
     case 'Game': {
-      return <Game config={gameConfig.current} />;
+      return <Game config={gameConfig.current!} />;
     }
     case 'Review': {
       return <Review result={gameResult.current} />;

@@ -9,10 +9,10 @@ import {
 } from 'src/domains/projects/ai-halma/AIHalmaEntity';
 import { Flex } from 'src/styled-system/jsx';
 import { grid } from 'src/styled-system/patterns';
-import { GameConfig } from '../useGameConfig';
+import { Config } from '../useGameConfig';
 
 type Props = {
-  onClickStart: (config: GameConfig['current']) => void;
+  onClickStart: (config: Config) => void;
 };
 export function Setup(props: Props) {
   const [players, setPlayers] = useState<Array<PlayerType>>(
@@ -61,10 +61,10 @@ export function Setup(props: Props) {
         marginBlockEnd="24px">
         <Text>Player 2</Text>
         <div className={grid({ columns: 2, gap: '24px' })}>
-          <Button shape="square" onClick={createPlayerHandler(1, 'Human')}>
+          <Button shape="square" onClick={createPlayerHandler(2, 'Human')}>
             Human
           </Button>
-          <Button shape="square" onClick={createPlayerHandler(1, 'AI')}>
+          <Button shape="square" onClick={createPlayerHandler(2, 'AI')}>
             AI
           </Button>
         </div>
