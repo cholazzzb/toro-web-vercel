@@ -46,6 +46,33 @@ export const getAllPiecesPosition = (
   return positions;
 };
 
+export function notOnDestinationPieces(params: {
+  piecesPosition: Array<Position>;
+  playerIdx: PlayerIdx;
+}): Array<Position> {
+  const piecesPositionSet = new Set(
+    params.piecesPosition.map((pos) => `${pos.x}-${pos.y}`),
+  );
+  for (const pos of targetPosition[params.playerIdx]) {
+    const key = `${pos.x}-${pos.y}`;
+    if (piecesPositionSet.has(key)) {
+      piecesPositionSet.delete(key);
+    } else {
+      break;
+    }
+  }
+
+  const out = Array.from(piecesPositionSet.values()).map((key) => {
+    const [x, y] = key.split('-');
+    return {
+      x: Number(x),
+      y: Number(y),
+    };
+  });
+
+  return out;
+}
+
 export const getLegalStepMoves = (
   board: Board,
   playerIdx: PlayerIdx,
@@ -154,8 +181,26 @@ export function convertMoveToMovesQueue(move: Move): Array<MoveQueue> {
   return moveQueue;
 }
 
+export function checkWinningCondition(board: Board): Square | undefined {
+  const winners = Object.values(targetPosition).map((tp, idx) => {
+    const playerIdx = (idx + 1) as PlayerIdx;
+    return tp.every((pos) => board[pos.y][pos.x] === playerIdx);
+  });
+
+  const draw = winners.filter((isWin) => isWin).length > 1;
+  if (draw) return Square.Empty;
+
+  const winner = winners.findIndex((isWin) => isWin) + 1;
+  if (winner < 1) return undefined;
+
+  return winner as Square;
+}
+
 // AI Bot
-export const getMostGreedyMove = (moves: Moves, playerIdx: PlayerIdx): Move => {
+export const getMostGreedyMove = (
+  moves: Moves,
+  curTargetPosition: Position,
+): Move => {
   if (moves.length === 1) {
     return moves[0];
   }
@@ -165,18 +210,18 @@ export const getMostGreedyMove = (moves: Moves, playerIdx: PlayerIdx): Move => {
       const sequenceLength = move.sequence.length;
       const endPosDistance = getPositionDistance(
         move.endPosition,
-        targetPosition[playerIdx],
+        curTargetPosition,
       );
       const startPosDistance = getPositionDistance(
         move.startPosition,
-        targetPosition[playerIdx],
+        curTargetPosition,
       );
       const deltaDistance =
         startPosDistance.x +
         startPosDistance.y -
         endPosDistance.x -
         endPosDistance.y;
-      return sequenceLength + deltaDistance;
+      return 0.3 * sequenceLength + deltaDistance;
     });
 
   let maxWeightIdx = 0;
@@ -185,6 +230,12 @@ export const getMostGreedyMove = (moves: Moves, playerIdx: PlayerIdx): Move => {
     if (weight > maxWeight) {
       maxWeight = weight;
       maxWeightIdx = idx;
+    } else if (weight === maxWeight) {
+      const random = Math.random() > 0.5;
+      if (random) {
+        maxWeight = weight;
+        maxWeightIdx = idx;
+      }
     }
   });
 
@@ -192,11 +243,27 @@ export const getMostGreedyMove = (moves: Moves, playerIdx: PlayerIdx): Move => {
 };
 
 export const getBestMove = (board: Board, playerIdx: PlayerIdx) => {
+  const curTargetPosition =
+    targetPosition[playerIdx].find((tp) => {
+      return board[tp.y][tp.x] !== playerIdx;
+    }) ?? targetPosition[playerIdx][0];
+
   const positions = getAllPiecesPosition(board, playerIdx);
-  const piecesBestMove = positions.map((position) => {
-    const jumpMoves = getLegalJumpMoves(board, playerIdx, position);
-    const stepMoves = getLegalStepMoves(board, playerIdx, position);
-    return getMostGreedyMove([...jumpMoves, ...stepMoves], playerIdx);
+  const filtered = notOnDestinationPieces({
+    piecesPosition: positions,
+    playerIdx,
   });
-  return getMostGreedyMove(piecesBestMove, playerIdx);
+
+  const piecesBestMove = filtered
+    .map((position) => {
+      const jumpMoves = getLegalJumpMoves(board, playerIdx, position);
+      const stepMoves = getLegalStepMoves(board, playerIdx, position);
+      const allMoves= [...jumpMoves, ...stepMoves];
+      if (allMoves.length > 0) {
+        return getMostGreedyMove(allMoves, curTargetPosition);
+      }
+      return undefined;
+    })
+    .filter((pbm) =>!!pbm) as Array<Move>;
+  return getMostGreedyMove(piecesBestMove, curTargetPosition);
 };

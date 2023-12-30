@@ -3,9 +3,9 @@
 import { Game } from './game/Game';
 import { Review } from './review/Review';
 import { Setup } from './setup/Setup';
-import { GameConfig, useGameConfig } from './useGameConfig';
-import { GameResult, useGameResult } from './useGameResult';
-import { GameStep, useGameStep } from './useGameStep';
+import { GameConfig, useGameConfig } from './hook/useGameConfig';
+import { GameResult, useGameResult } from './hook/useGameResult';
+import { GameStep, useGameStep } from './hook/useGameStep';
 
 const AIHalma = () => {
   const gameStep = useGameStep();
@@ -32,7 +32,13 @@ const renderGame = (game: {
       return <Setup onClickStart={onClickStart} />;
     }
     case 'Game': {
-      return <Game config={gameConfig.current!} />;
+      return (
+        <Game
+          config={gameConfig.current!}
+          gameResult={gameResult}
+          onGameFinish={gameStep.handler.onGameNext}
+        />
+      );
     }
     case 'Review': {
       return <Review result={gameResult.current} />;

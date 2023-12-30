@@ -7,7 +7,8 @@ import {
 export function useAI() {
   const getMovesQueue = (board: Board, turn: PlayerIdx) => {
     const bestMove = getBestMove(board, turn);
-    return convertMoveToMovesQueue(bestMove);
+    const moveQueue = convertMoveToMovesQueue(bestMove);
+    return { move: bestMove, moveQueue };
   };
 
   return { getMovesQueue };

@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-import { Config } from '../../useGameConfig';
+import { Config } from '../../hook/useGameConfig';
 
 type Game = {
   config: Config;

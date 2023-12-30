@@ -7,17 +7,20 @@ import {
   Position,
   Square as SquareEnum,
 } from 'src/domains/projects/ai-halma/AIHalmaEntity';
-import { initialBoard } from 'src/domains/projects/ai-halma/gameSetting';
 import { Flex } from 'src/styled-system/jsx';
 import { Turn } from '../Game';
 import { GameContext } from '../context/game';
 import { useAI } from '../hook/useAI';
+import { useBoard } from '../../hook/useBoard';
 import { usePossibleMoveMap } from '../hook/usePossibleMoveMap';
 import Square from './Square';
+import { checkWinningCondition } from 'src/domains/projects/ai-halma/AIHalmaLogic';
+import { GameResult } from '../../hook/useGameResult';
 
 type BoardGameProps = {
   turn: Turn;
   endTurn: () => void;
+  gameResult: GameResult;
 };
 
 const BoardGame = (props: BoardGameProps) => {
@@ -25,29 +28,14 @@ const BoardGame = (props: BoardGameProps) => {
 
   useEffect(() => {
     if (game.config.players[props.turn - 1] === 'AI') {
-      const moveQueue = AI.getMovesQueue(board, props.turn);
-      setMovesQueue(moveQueue);
+      const { move, moveQueue } = AI.getMovesQueue(board, props.turn);
+      props.gameResult.appendMove(move, props.turn);
       animateMove({ board, movesQueue: moveQueue, turn: props.turn });
     }
   }, []);
 
-  const [board, setBoard] = useState<Board>(initialBoard.twoPlayer);
+  const { board, movePiece } = useBoard();
 
-  const movePiece = (params: {
-    board: Board;
-    initPos: Position;
-    newPos: Position;
-  }) => {
-    const { board, initPos, newPos } = params;
-    const newBoard = board.map((rows) => rows.map((col) => col));
-    const piece = newBoard[initPos.y][initPos.x];
-    newBoard[newPos.y][newPos.x] = piece;
-    newBoard[initPos.y][initPos.x] = 0;
-    setBoard(newBoard);
-    return newBoard;
-  };
-
-  const [_movesQueue, setMovesQueue] = useState<Array<MoveQueue>>([]);
   const timer = useRef<NodeJS.Timeout>();
 
   const possibleMove = usePossibleMoveMap(board);
@@ -68,18 +56,18 @@ const BoardGame = (props: BoardGameProps) => {
         initPos: move.startPos,
         newPos: move.endPos,
       });
-      setMovesQueue(newQueue);
       timer.current = setTimeout(() => {
         animateMove({ board: nextBoard, movesQueue: newQueue, turn });
-      }, 1000);
-      return;
+      }, 100);
     } else {
       const nextTurn = getNextTurn(turn);
       possibleMove.clean();
       props.endTurn();
-      if (game.config.players[nextTurn - 1] === 'AI') {
-        const moveQueue = AI.getMovesQueue(board, nextTurn);
-        setMovesQueue(moveQueue);
+      const winner = checkWinningCondition(board);
+      props.gameResult.saveWinner(winner);
+      if (winner === undefined && game.config.players[nextTurn - 1] === 'AI') {
+        const { move, moveQueue } = AI.getMovesQueue(board, nextTurn);
+        props.gameResult.appendMove(move, nextTurn);
         animateMove({ board, movesQueue: moveQueue, turn: nextTurn });
       }
     }
@@ -114,6 +102,7 @@ const BoardGame = (props: BoardGameProps) => {
                     activePiece={activePiece}
                     updateActivePiece={updateActivePiece}
                     animateMove={animateMove}
+                    gameResult={props.gameResult}
                     possibleMove={possibleMove}
                   />
                 );

@@ -9,7 +9,7 @@ import {
 } from 'src/domains/projects/ai-halma/AIHalmaEntity';
 import { Flex } from 'src/styled-system/jsx';
 import { grid } from 'src/styled-system/patterns';
-import { Config } from '../useGameConfig';
+import { Config } from '../hook/useGameConfig';
 import { SelectPlayerTypeButton } from './component/SelectPlayerTypeButton';
 
 type Props = {

@@ -9,16 +9,15 @@ import {
   InitialPositionKey,
   MoveQueue,
   PlayerIdx,
-  Position,
-  Square as SquareType,
+  Position
 } from 'src/domains/projects/ai-halma/AIHalmaEntity';
-import { cva } from 'src/styled-system/css';
-import { Flex } from 'src/styled-system/jsx';
-import { usePossibleMoveMap } from '../hook/usePossibleMoveMap';
-import { Turn } from '../Game';
 import { convertMoveToMovesQueue } from 'src/domains/projects/ai-halma/AIHalmaLogic';
-import { colorTheme } from 'src/theme';
+import { Flex } from 'src/styled-system/jsx';
+import { Piece } from '../../component/Piece';
+import { GameResult } from '../../hook/useGameResult';
+import { Turn } from '../Game';
 import { GameContext } from '../context/game';
+import { usePossibleMoveMap } from '../hook/usePossibleMoveMap';
 
 type SquareProps = {
   turn: Turn;
@@ -32,6 +31,7 @@ type SquareProps = {
     movesQueue: Array<MoveQueue>;
     turn: PlayerIdx;
   }) => void;
+  gameResult: GameResult;
   possibleMove: ReturnType<typeof usePossibleMoveMap>;
 };
 
@@ -44,12 +44,16 @@ const Square = memo(
     activePiece,
     updateActivePiece,
     animateMove,
+    gameResult,
     possibleMove,
   }: SquareProps) => {
     const game = useContext(GameContext);
     const humanTurn = game.config.players[turn - 1] === 'Human';
 
-    const enable = piece === 0 || turn === piece;
+    const enable =
+      gameResult.current.winner === undefined &&
+      (piece === 0 || turn === piece);
+
     const emptyPiece = piece === 0;
 
     const initPositionKey: InitialPositionKey | undefined =
@@ -79,6 +83,7 @@ const Square = memo(
         movesQueue: convertMoveToMovesQueue(move),
         turn,
       });
+      gameResult.appendMove(move, turn);
       updateActivePiece(undefined);
     };
 
@@ -110,7 +115,7 @@ const Square = memo(
         alignItems="center"
         onClick={onClick}>
         <Show when={!!piece}>
-          <PieceContainer enable={enable} piece={piece} />
+          <Piece enable={enable} piece={piece} />
         </Show>
       </Flex>
     );
@@ -120,29 +125,3 @@ const Square = memo(
 Square.displayName = 'Square';
 
 export default Square;
-
-const pieceCVA = cva({
-  base: {
-    display: 'inline-block',
-    width: '20px',
-    height: '20px',
-    borderRadius: '50%',
-  },
-  variants: {
-    kind: colorTheme,
-  },
-  defaultVariants: {
-    kind: 0,
-  },
-});
-
-const PieceContainer = ({
-  enable,
-  piece,
-}: {
-  enable: boolean;
-  piece: SquareType;
-}) => {
-  const cursor = enable ? 'pointer' : 'not-allowed';
-  return <Flex className={pieceCVA({ kind: piece })} cursor={cursor} />;
-};
