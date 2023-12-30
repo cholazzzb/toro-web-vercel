@@ -75,7 +75,9 @@ export function Setup(props: Props) {
         </div>
       </Flex>
 
-      <Button onClick={onClick}>Start</Button>
+      <Button disable={!players.every((player) => !!player)} onClick={onClick}>
+        Start
+      </Button>
     </Glassy>
   );
 }
