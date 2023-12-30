@@ -9,7 +9,7 @@ import {
   InitialPositionKey,
   MoveQueue,
   PlayerIdx,
-  Position
+  Position,
 } from 'src/domains/projects/ai-halma/AIHalmaEntity';
 import { convertMoveToMovesQueue } from 'src/domains/projects/ai-halma/AIHalmaLogic';
 import { Flex } from 'src/styled-system/jsx';
