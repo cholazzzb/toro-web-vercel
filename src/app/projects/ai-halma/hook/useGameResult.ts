@@ -6,23 +6,28 @@ import {
   Square,
 } from 'src/domains/projects/ai-halma/AIHalmaEntity';
 
+export type Notations = Array<Partial<Record<PlayerIdx, Move>>>;
 type Result = {
   winner: Square | undefined;
-  notations: Partial<Record<PlayerIdx, Array<Move>>>;
+  notations: Notations;
 };
 export type GameResult = ReturnType<typeof useGameResult>;
 
 export function useGameResult() {
   const current = useRef<Result>({
     winner: undefined,
-    notations: {
-      1: [],
-      2: [],
-    },
+    notations: [{}],
   }).current;
 
   const appendMove = (move: Move, playerIdx: PlayerIdx) => {
-    current.notations[playerIdx]?.push(move);
+    const len = current.notations.length;
+    const lastMove = current.notations[len - 1];
+
+    if (lastMove?.[playerIdx]) {
+      current.notations.push({ [playerIdx]: move });
+    } else {
+      current.notations[len - 1][playerIdx] = move;
+    }
   };
 
   const saveWinner = (winner: Square | undefined) => {

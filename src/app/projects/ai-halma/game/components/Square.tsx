@@ -7,6 +7,7 @@ import {
   Board,
   EndPositionKey,
   InitialPositionKey,
+  Move,
   MoveQueue,
   PlayerIdx,
   Position,
@@ -28,6 +29,7 @@ type SquareProps = {
   updateActivePiece: (activePiece?: Position) => void;
   animateMove: (params: {
     board: Board;
+    move: Move;
     movesQueue: Array<MoveQueue>;
     turn: PlayerIdx;
   }) => void;
@@ -80,6 +82,7 @@ const Square = memo(
       const move = possibleMove.map[initPositionKey][endPositionKey];
       animateMove({
         board: possibleMove.board,
+        move,
         movesQueue: convertMoveToMovesQueue(move),
         turn,
       });

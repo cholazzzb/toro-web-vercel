@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 
 import {
   Board,
+  Move,
   MoveQueue,
   PlayerIdx,
   Position,
@@ -29,8 +30,7 @@ const BoardGame = (props: BoardGameProps) => {
   useEffect(() => {
     if (game.config.players[props.turn - 1] === 'AI') {
       const { move, moveQueue } = AI.getMovesQueue(board, props.turn);
-      props.gameResult.appendMove(move, props.turn);
-      animateMove({ board, movesQueue: moveQueue, turn: props.turn });
+      animateMove({ board, move, movesQueue: moveQueue, turn: props.turn });
     }
   }, []);
 
@@ -43,6 +43,7 @@ const BoardGame = (props: BoardGameProps) => {
   const AI = useAI();
   const animateMove = (params: {
     board: Board;
+    move: Move;
     movesQueue: Array<MoveQueue>;
     turn: PlayerIdx;
   }) => {
@@ -57,9 +58,15 @@ const BoardGame = (props: BoardGameProps) => {
         newPos: move.endPos,
       });
       timer.current = setTimeout(() => {
-        animateMove({ board: nextBoard, movesQueue: newQueue, turn });
+        animateMove({
+          board: nextBoard,
+          move: params.move,
+          movesQueue: newQueue,
+          turn,
+        });
       }, 100);
     } else {
+      props.gameResult.appendMove(params.move, turn);
       const nextTurn = getNextTurn(turn);
       possibleMove.clean();
       props.endTurn();
@@ -67,8 +74,7 @@ const BoardGame = (props: BoardGameProps) => {
       props.gameResult.saveWinner(winner);
       if (winner === undefined && game.config.players[nextTurn - 1] === 'AI') {
         const { move, moveQueue } = AI.getMovesQueue(board, nextTurn);
-        props.gameResult.appendMove(move, nextTurn);
-        animateMove({ board, movesQueue: moveQueue, turn: nextTurn });
+        animateMove({ board, move, movesQueue: moveQueue, turn: nextTurn });
       }
     }
   };
