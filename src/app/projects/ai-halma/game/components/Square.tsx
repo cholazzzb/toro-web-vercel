@@ -80,14 +80,13 @@ const Square = memo(
     };
     const onSelectDestination = (initPositionKey: InitialPositionKey) => {
       const move = possibleMove.map[initPositionKey][endPositionKey];
+      updateActivePiece(undefined);
       animateMove({
         board: possibleMove.board,
         move,
         movesQueue: convertMoveToMovesQueue(move),
         turn,
       });
-      gameResult.appendMove(move, turn);
-      updateActivePiece(undefined);
     };
 
     const onClick = () => {

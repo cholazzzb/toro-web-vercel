@@ -8,15 +8,15 @@ import {
   Position,
   Square as SquareEnum,
 } from 'src/domains/projects/ai-halma/AIHalmaEntity';
+import { checkWinningCondition } from 'src/domains/projects/ai-halma/AIHalmaLogic';
 import { Flex } from 'src/styled-system/jsx';
+import { useBoard } from '../../hook/useBoard';
+import { GameResult } from '../../hook/useGameResult';
 import { Turn } from '../Game';
 import { GameContext } from '../context/game';
 import { useAI } from '../hook/useAI';
-import { useBoard } from '../../hook/useBoard';
 import { usePossibleMoveMap } from '../hook/usePossibleMoveMap';
 import Square from './Square';
-import { checkWinningCondition } from 'src/domains/projects/ai-halma/AIHalmaLogic';
-import { GameResult } from '../../hook/useGameResult';
 
 type BoardGameProps = {
   turn: Turn;
