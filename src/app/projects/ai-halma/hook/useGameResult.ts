@@ -5,14 +5,18 @@ import {
   PlayerIdx,
   Square,
 } from 'src/domains/projects/ai-halma/AIHalmaEntity';
+import { Option } from 'src/utils/fp';
+import { Notation } from '../domain/notation';
 
-export type Notations = Array<Partial<Record<PlayerIdx, Move>>>;
-type Result = {
-  winner: Square | undefined;
-  notations: Notations;
-};
+type ResultNotation = Partial<Record<PlayerIdx, Move>>;
+export type ResultNotations = Array<ResultNotation>;
+
 export type GameResult = ReturnType<typeof useGameResult>;
 
+type Result = {
+  winner: Square | undefined;
+  notations: ResultNotations;
+};
 export function useGameResult() {
   const current = useRef<Result>({
     winner: undefined,
@@ -35,4 +39,11 @@ export function useGameResult() {
   };
 
   return { current, appendMove, saveWinner };
+}
+
+export function getMoveByNotation(
+  resultNotations: ResultNotations,
+  notation: Notation,
+): Option<Move> {
+  return resultNotations[notation.moveNumber - 1][notation.playerIdx];
 }

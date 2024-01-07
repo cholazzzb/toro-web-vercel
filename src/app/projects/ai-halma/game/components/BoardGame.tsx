@@ -64,7 +64,7 @@ const BoardGame = (props: BoardGameProps) => {
           movesQueue: newQueue,
           turn,
         });
-      }, 100);
+      }, 1000);
     } else {
       props.gameResult.appendMove(params.move, turn);
       const nextTurn = getNextTurn(turn);

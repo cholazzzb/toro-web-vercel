@@ -1,115 +1,109 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
-import {
-  Board,
-  Move,
-  PlayerIdx,
-} from 'src/domains/projects/ai-halma/AIHalmaEntity';
 import { initialBoard } from 'src/domains/projects/ai-halma/gameSetting';
-import { Notations } from '../../hook/useGameResult';
+import {
+  Notation,
+  getLastNotation,
+  getNextNotation,
+  getPrevNotation,
+  initNotation,
+} from '../../domain/notation';
+import { ResultNotations, getMoveByNotation } from '../../hook/useGameResult';
+import { getBoardAfterMove, useMoveBoardMap } from './useMoveBoardMap';
+import { match } from 'src/utils/fp';
 
-type CurrentMove = {
-  moveNumber: number;
-  playerIdx: PlayerIdx;
-};
-
-const initCurrentMove: CurrentMove = {
-  moveNumber: 0,
-  playerIdx: 2,
-};
-
-export function useReviewBoard(params: { notations: Notations }) {
+export function useReviewBoard(params: { resultNotation: ResultNotations }) {
   const [reviewBoard, setReviewBoard] = useState(initialBoard.twoPlayer);
 
-  const [currentMove, setCurrentMove] = useState(initCurrentMove);
-  const updateCurrentMove = (curMove: CurrentMove) => {
-    setCurrentMove(curMove);
+  const [notation, setNotation] = useState(initNotation);
+  const updateNotation = (notation: Notation) => {
+    setNotation(notation);
   };
 
-  const moveBoardMap = useRef<Record<MovePieceKey, Board>>({}).current;
+  const { getBoardByNotation, saveBoardByNotation, calculateLastBoard } =
+    useMoveBoardMap(params);
 
-  const onClickNextMove = () => {
-    const nextCurrentMove: CurrentMove = {
-      moveNumber:
-        currentMove.playerIdx === 1
-          ? currentMove.moveNumber
-          : currentMove.moveNumber + 1,
-      playerIdx: currentMove.playerIdx === 1 ? 2 : 1,
-    };
-    const key = createMovePieceKey({
-      moveNumber: nextCurrentMove.moveNumber,
-      playerIdx: nextCurrentMove.playerIdx,
+  const onClickNotation = (notation: Notation) => {
+    const board = getBoardByNotation(notation);
+
+    match(board, {
+      Some(val) {
+        setReviewBoard(val);
+      },
+      None() {
+        calculateLastBoard();
+        const board = getBoardByNotation(notation)!;
+        setReviewBoard(board);
+      },
     });
 
-    const nextBoard = moveBoardMap[key];
+    updateNotation(notation);
+  };
 
+  const onClickNextMove = () => {
+    const nextNotation = getNextNotation(notation);
+
+    const move = getMoveByNotation(params.resultNotation, nextNotation);
+    if (!move) {
+      return;
+    }
+
+    const nextBoard = getBoardByNotation(nextNotation);
     if (nextBoard) {
       setReviewBoard(nextBoard);
     } else {
       const nextBoard = getBoardAfterMove({
         board: reviewBoard,
-        move: params.notations[nextCurrentMove.moveNumber - 1][
-          nextCurrentMove.playerIdx
-        ]!,
+        move: move,
       });
-      moveBoardMap[key] = nextBoard;
+      saveBoardByNotation(nextNotation, nextBoard);
       setReviewBoard(nextBoard);
     }
 
-    setCurrentMove(nextCurrentMove);
+    updateNotation(nextNotation);
   };
 
-  const onClickLastMove = () => {};
+  const onClickLastMove = () => {
+    const lastNotation = getLastNotation(params.resultNotation);
+
+    const nextBoard = getBoardByNotation(lastNotation);
+    if (nextBoard) {
+      setReviewBoard(nextBoard);
+    } else {
+      const board = calculateLastBoard();
+      setReviewBoard(board);
+    }
+
+    updateNotation(lastNotation);
+  };
 
   const onClickPrevMove = () => {
-    const prevCurrentMove: CurrentMove = {
-      moveNumber:
-        currentMove.playerIdx === 2
-          ? currentMove.moveNumber
-          : currentMove.moveNumber - 1,
-      playerIdx: currentMove.playerIdx === 1 ? 2 : 1,
-    };
-    const key = createMovePieceKey({
-      moveNumber: prevCurrentMove.moveNumber,
-      playerIdx: prevCurrentMove.playerIdx,
-    });
-    const nextBoard = moveBoardMap[key];
+    const prevNotation = getPrevNotation(notation);
+
+    const nextBoard = getBoardByNotation(prevNotation);
     if (nextBoard) {
       setReviewBoard(nextBoard);
     } else {
       setReviewBoard(initialBoard.twoPlayer);
     }
-    setCurrentMove(prevCurrentMove);
+
+    updateNotation(prevNotation);
   };
 
   const onClickFirstMove = () => {
     setReviewBoard(initialBoard.twoPlayer);
-    updateCurrentMove(initCurrentMove);
+    updateNotation(initNotation);
   };
 
   return {
     board: reviewBoard,
-    currentMove,
-    updateCurrentMove,
+    notation,
     handler: {
+      onClickNotation,
       onClickNextMove,
       onClickLastMove,
       onClickPrevMove,
       onClickFirstMove,
     },
   };
-}
-
-type MovePieceKey = string; // "moveNumber-playerIdx"
-function createMovePieceKey(params: { moveNumber: number; playerIdx: number }) {
-  return `${params.moveNumber}-${params.playerIdx}`;
-}
-
-function getBoardAfterMove(params: { board: Board; move: Move }) {
-  const { board, move } = params;
-  const newBoard = board.map((rows) => rows.map((col) => col));
-  const piece = newBoard[move.startPosition.y][move.startPosition.x];
-  newBoard[move.endPosition.y][move.endPosition.x] = piece;
-  newBoard[move.startPosition.y][move.startPosition.x] = 0;
-  return newBoard;
 }

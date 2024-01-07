@@ -15,8 +15,8 @@ type Props = {
 };
 
 export function Review(props: Props) {
-  const { board, currentMove, updateCurrentMove, handler } = useReviewBoard({
-    notations: props.result.notations,
+  const { board, notation, handler } = useReviewBoard({
+    resultNotation: props.result.notations,
   });
 
   return (
@@ -33,7 +33,7 @@ export function Review(props: Props) {
         })}
       </Flex>
       <Flex height="250px" width="100%" marginBlock="12px" direction="column">
-        <Flex>
+        <Flex border="1px solid" backgroundColor="rgba(0,0,0,0.1)">
           <Flex width="32px" />
 
           <Flex grow={1}>
@@ -45,9 +45,11 @@ export function Review(props: Props) {
         </Flex>
         <Virtuoso
           style={{
-            backgroundColor: 'black',
+            borderLeft: '1px solid white',
+            borderRight: '1px solid white',
             height: '100%',
             width: '100%',
+            backgroundColor: 'rgba(0,0,0,0.1)',
           }}
           data={props.result.notations}
           itemContent={(index, move) => {
@@ -55,69 +57,75 @@ export function Review(props: Props) {
             const move2 = move[2];
 
             const isMove1Active =
-              currentMove.moveNumber === index + 1 &&
-              currentMove.playerIdx === 1;
+              notation.moveNumber === index + 1 && notation.playerIdx === 1;
 
             const isMove2Active =
-              currentMove.moveNumber === index + 1 &&
-              currentMove.playerIdx === 2;
+              notation.moveNumber === index + 1 && notation.playerIdx === 2;
 
             const onClickMove1 = () => {
-              updateCurrentMove({ moveNumber: index + 1, playerIdx: 1 });
+              handler.onClickNotation({ moveNumber: index + 1, playerIdx: 1 });
             };
 
             const onClickMove2 = () => {
-              updateCurrentMove({ moveNumber: index + 1, playerIdx: 2 });
+              handler.onClickNotation({ moveNumber: index + 1, playerIdx: 2 });
             };
 
             return (
               <Flex
                 key={`${move1?.startPosition}-${move1?.endPosition}`}
                 paddingBlock="8px"
-                width="100%"
-                backgroundColor="gray">
-                <Flex
-                  width="32px"
-                  justifyContent="center"
-                  backgroundColor="green">
-                  <Text>{index + 1}</Text>
+                width="100%">
+                <Flex width="32px" justifyContent="center" alignItems="center">
+                  <Text>{index + 1}.</Text>
                 </Flex>
-                <Flex width="100%" backgroundColor="blue">
-                  <Flex
-                    grow={1}
-                    border={isMove1Active ? 'white 1px solid' : undefined}
-                    onClick={onClickMove1}>
-                    <Text>
-                      {move1?.startPosition.x},{move1?.startPosition.y}-
-                      {move1?.endPosition.x},{move1?.endPosition.y}
-                    </Text>
+                <Flex width="100%">
+                  <Flex grow={1} onClick={onClickMove1}>
+                    <Flex
+                      padding="4px"
+                      backgroundColor={
+                        isMove1Active ? 'rgba(255,255,255,0.2)' : undefined
+                      }>
+                      <Text>
+                        {move1?.startPosition.x},{move1?.startPosition.y}-
+                        {move1?.endPosition.x},{move1?.endPosition.y}
+                      </Text>
+                    </Flex>
                   </Flex>
-                  <Flex
-                    grow={1}
-                    border={isMove2Active ? 'white 1px solid' : undefined}
-                    onClick={onClickMove2}>
-                    <Text>
-                      {move2?.startPosition.x},{move2?.startPosition.y}-
-                      {move2?.endPosition.x},{move2?.endPosition.y}
-                    </Text>
+                  <Flex grow={1} onClick={onClickMove2}>
+                    <Flex
+                      padding="4px"
+                      backgroundColor={
+                        isMove2Active ? 'rgba(255,255,255,0.2)' : undefined
+                      }>
+                      <Text>
+                        {move2?.startPosition.x},{move2?.startPosition.y}-
+                        {move2?.endPosition.x},{move2?.endPosition.y}
+                      </Text>
+                    </Flex>
                   </Flex>
                 </Flex>
               </Flex>
             );
           }}
         />
-        <Flex alignItems="center" justifyContent="space-between">
-          <FontAwesomeIcon icon={faPlay} />
-          <Flex onClick={handler.onClickFirstMove}>
+        <Flex
+          alignItems="center"
+          justifyContent="space-between"
+          border="1px solid"
+          backgroundColor="rgba(0,0,0,0.1)">
+          <Flex padding="4px">
+            <FontAwesomeIcon icon={faPlay} />
+          </Flex>
+          <Flex padding="4px" onClick={handler.onClickFirstMove}>
             <Text weight="bold">{'<<'}</Text>
           </Flex>
-          <Flex onClick={handler.onClickPrevMove}>
+          <Flex padding="4px" onClick={handler.onClickPrevMove}>
             <Text weight="bold">{'<'}</Text>
           </Flex>
-          <Flex onClick={handler.onClickNextMove}>
+          <Flex padding="4px" onClick={handler.onClickNextMove}>
             <Text weight="bold">{'>'}</Text>
           </Flex>
-          <Flex onClick={handler.onClickLastMove}>
+          <Flex padding="4px" onClick={handler.onClickLastMove}>
             <Text weight="bold">{'>>'}</Text>
           </Flex>
         </Flex>
