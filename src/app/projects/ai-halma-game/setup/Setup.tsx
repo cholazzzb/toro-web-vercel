@@ -38,7 +38,7 @@ export function Setup(props: Props) {
 
   return (
     <Glassy direction="column" padding="24px">
-      <Text size="lg">Setup Game</Text>
+      <Text variant="h6">Setup Game</Text>
       <Flex direction="column" padding="8px" marginBlockEnd="24px">
         <Text>Player 1</Text>
         <div className={grid({ columns: 2, gap: '24px' })}>

@@ -117,16 +117,16 @@ export function Review(props: Props) {
             <FontAwesomeIcon icon={faPlay} />
           </Flex>
           <Flex padding="4px" onClick={handler.onClickFirstMove}>
-            <Text weight="bold">{'<<'}</Text>
+            <Text variant="s3">{'<<'}</Text>
           </Flex>
           <Flex padding="4px" onClick={handler.onClickPrevMove}>
-            <Text weight="bold">{'<'}</Text>
+            <Text variant="s3">{'<'}</Text>
           </Flex>
           <Flex padding="4px" onClick={handler.onClickNextMove}>
-            <Text weight="bold">{'>'}</Text>
+            <Text variant="s3">{'>'}</Text>
           </Flex>
           <Flex padding="4px" onClick={handler.onClickLastMove}>
-            <Text weight="bold">{'>>'}</Text>
+            <Text variant="s3">{'>>'}</Text>
           </Flex>
         </Flex>
       </Flex>

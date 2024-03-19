@@ -33,7 +33,7 @@ function Blogs(_props: PropsWithChildren<BlogsProps>) {
                 borderRadius="7px"
                 backgroundColor="rgba(255,255,255,0.3)">
                 <Text>{new Date(blog.date).toLocaleDateString()}</Text>
-                <Text size="lg">{blog.title}</Text>
+                <Text variant="h6">{blog.title}</Text>
               </Glassy>
             </Link>
           );
