@@ -74,7 +74,8 @@ export function Review(props: Props) {
               <Flex
                 key={`${move1?.startPosition}-${move1?.endPosition}`}
                 paddingBlock="8px"
-                width="100%">
+                width="100%"
+              >
                 <Flex width="32px" justifyContent="center" alignItems="center">
                   <Text>{index + 1}.</Text>
                 </Flex>
@@ -84,7 +85,8 @@ export function Review(props: Props) {
                       padding="4px"
                       backgroundColor={
                         isMove1Active ? 'rgba(255,255,255,0.2)' : undefined
-                      }>
+                      }
+                    >
                       <Text>
                         {move1?.startPosition.x},{move1?.startPosition.y}-
                         {move1?.endPosition.x},{move1?.endPosition.y}
@@ -96,7 +98,8 @@ export function Review(props: Props) {
                       padding="4px"
                       backgroundColor={
                         isMove2Active ? 'rgba(255,255,255,0.2)' : undefined
-                      }>
+                      }
+                    >
                       <Text>
                         {move2?.startPosition.x},{move2?.startPosition.y}-
                         {move2?.endPosition.x},{move2?.endPosition.y}
@@ -112,21 +115,22 @@ export function Review(props: Props) {
           alignItems="center"
           justifyContent="space-between"
           border="1px solid"
-          backgroundColor="rgba(0,0,0,0.1)">
+          backgroundColor="rgba(0,0,0,0.1)"
+        >
           <Flex padding="4px">
             <FontAwesomeIcon icon={faPlay} />
           </Flex>
           <Flex padding="4px" onClick={handler.onClickFirstMove}>
-            <Text weight="bold">{'<<'}</Text>
+            <Text variant="s3">{'<<'}</Text>
           </Flex>
           <Flex padding="4px" onClick={handler.onClickPrevMove}>
-            <Text weight="bold">{'<'}</Text>
+            <Text variant="s3">{'<'}</Text>
           </Flex>
           <Flex padding="4px" onClick={handler.onClickNextMove}>
-            <Text weight="bold">{'>'}</Text>
+            <Text variant="s3">{'>'}</Text>
           </Flex>
           <Flex padding="4px" onClick={handler.onClickLastMove}>
-            <Text weight="bold">{'>>'}</Text>
+            <Text variant="s3">{'>>'}</Text>
           </Flex>
         </Flex>
       </Flex>
@@ -141,7 +145,8 @@ function Square({ piece }: { piece: SquareType }) {
       width="30px"
       height="30px"
       justifyContent="center"
-      alignItems="center">
+      alignItems="center"
+    >
       <Show when={!!piece}>
         <Piece enable={true} piece={piece} />
       </Show>

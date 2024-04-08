@@ -27,11 +27,11 @@ function NavButton(props: PropsWithChildren<NavButtonProps>) {
       <Show when={props.open}>
         <Flex
           backgroundColor="rgba(255,255,255,0.2)"
+          flexWrap="wrap"
           width="full"
           height="100vh"
           alignItems="center"
-          justifyContent="center"
-        >
+          justifyContent="center">
           <Flex justifyContent="center" marginRight={10}>
             <Link href="/">
               <RoundButton>
@@ -41,7 +41,16 @@ function NavButton(props: PropsWithChildren<NavButtonProps>) {
             </Link>
           </Flex>
 
-          <Flex justifyContent="center">
+          <Flex justifyContent="center" marginRight={10}>
+            <Link href="/projects">
+              <RoundButton>
+                <FontAwesomeIcon icon={faPenNib} height={25} width={25} />
+              </RoundButton>
+              <Text center>Projects</Text>
+            </Link>
+          </Flex>
+
+          <Flex justifyContent="center" alignItems="center">
             <Link href="/blogs">
               <RoundButton>
                 <FontAwesomeIcon icon={faPenNib} height={25} width={25} />
@@ -59,15 +68,13 @@ function NavButton(props: PropsWithChildren<NavButtonProps>) {
         position="fixed"
         bottom={3}
         width="100%"
-        paddingInline="28px"
-      >
+        paddingInline="28px">
         <Flex
           borderRadius="50%"
           backgroundColor="rgba(255,255,255,0.1)"
           color="white"
           alignItems="center"
-          justifyContent="center"
-        >
+          justifyContent="center">
           <RoundButton onClick={props.onClick}>
             <FontAwesomeIcon
               icon={props.open ? faClose : faGlobeAsia}
@@ -82,20 +89,17 @@ function NavButton(props: PropsWithChildren<NavButtonProps>) {
             width="100%"
             padding="10px"
             marginInlineEnd="10px"
-            borderRightRadius="20px"
-          >
+            borderRightRadius="20px">
             <Breadcrumb>
               {props.breadcrumbItems?.map((bci, idx) => {
                 const isCurrentPage = idx + 1 === props.breadcrumbItems?.length;
                 return (
                   <BreadcrumbItem
                     key={bci.url + bci.text}
-                    isCurrentPage={isCurrentPage}
-                  >
+                    isCurrentPage={isCurrentPage}>
                     <BreadcrumbLink
                       href={bci.url}
-                      textDecoration={isCurrentPage ? 'underline' : 'none'}
-                    >
+                      textDecoration={isCurrentPage ? 'underline' : 'none'}>
                       {bci.text}
                     </BreadcrumbLink>
                   </BreadcrumbItem>

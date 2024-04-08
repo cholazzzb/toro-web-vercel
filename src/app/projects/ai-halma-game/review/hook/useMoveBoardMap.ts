@@ -48,7 +48,7 @@ export function useMoveBoardMap(params: { resultNotation: ResultNotations }) {
       const prevNotation = getPrevNotation(notation);
       const board = getBoardByNotation(prevNotation) ?? initialBoard.twoPlayer;
       const nextBoard = getBoardAfterMove({ board, move });
-   
+
       saveBoardByNotation(notation, nextBoard);
     }
 

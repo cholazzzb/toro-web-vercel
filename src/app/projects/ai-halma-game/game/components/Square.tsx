@@ -115,7 +115,8 @@ const Square = memo(
         height="30px"
         justifyContent="center"
         alignItems="center"
-        onClick={onClick}>
+        onClick={onClick}
+      >
         <Show when={!!piece}>
           <Piece enable={enable} piece={piece} />
         </Show>

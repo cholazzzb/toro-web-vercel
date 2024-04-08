@@ -38,20 +38,22 @@ export function Setup(props: Props) {
 
   return (
     <Glassy direction="column" padding="24px">
-      <Text size="lg">Setup Game</Text>
+      <Text variant="h6">Setup Game</Text>
       <Flex direction="column" padding="8px" marginBlockEnd="24px">
         <Text>Player 1</Text>
         <div className={grid({ columns: 2, gap: '24px' })}>
           <SelectPlayerTypeButton
             kind={1}
             active={players[0] === 'Human'}
-            onClick={createPlayerHandler(1, 'Human')}>
+            onClick={createPlayerHandler(1, 'Human')}
+          >
             Human
           </SelectPlayerTypeButton>
           <SelectPlayerTypeButton
             kind={1}
             active={players[0] === 'AI'}
-            onClick={createPlayerHandler(1, 'AI')}>
+            onClick={createPlayerHandler(1, 'AI')}
+          >
             AI
           </SelectPlayerTypeButton>
         </div>
@@ -63,13 +65,15 @@ export function Setup(props: Props) {
           <SelectPlayerTypeButton
             kind={2}
             active={players[1] === 'Human'}
-            onClick={createPlayerHandler(2, 'Human')}>
+            onClick={createPlayerHandler(2, 'Human')}
+          >
             Human
           </SelectPlayerTypeButton>
           <SelectPlayerTypeButton
             kind={2}
             active={players[1] === 'AI'}
-            onClick={createPlayerHandler(2, 'AI')}>
+            onClick={createPlayerHandler(2, 'AI')}
+          >
             AI
           </SelectPlayerTypeButton>
         </div>

@@ -10,7 +10,8 @@ export function Icon(props: PropsWithChildren) {
       alignItems="center"
       height="10px"
       width="10px"
-      marginInlineEnd="10px">
+      marginInlineEnd="10px"
+    >
       {props.children}
     </styled.span>
   );

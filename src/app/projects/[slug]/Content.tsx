@@ -1,7 +1,8 @@
 'use client';
 
-import { Blog } from 'contentlayer/generated';
+import { Project } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
+import Link from 'next/link';
 import { useCallback, useState, type PropsWithChildren } from 'react';
 import { Glassy } from 'src/components/Glass';
 
@@ -9,10 +10,11 @@ import NavButton from 'src/components/NavButton';
 import Show from 'src/components/Show';
 import { Text } from 'src/components/Text';
 import MDXComponents from 'src/components/mdx-components';
-import { Flex, styled } from 'src/styled-system/jsx';
+import { css } from 'src/styled-system/css';
+import { Flex } from 'src/styled-system/jsx';
 
 type ContentProps = {
-  blog: Blog;
+  project: Project;
 };
 
 function Content(props: PropsWithChildren<ContentProps>) {
@@ -21,25 +23,24 @@ function Content(props: PropsWithChildren<ContentProps>) {
     setOpenModal((prev) => !prev);
   }, []);
 
-  const Component = useMDXComponent(props.blog.body.code);
+  const Component = useMDXComponent(props.project.body.code);
 
   return (
     <>
       <Show when={!openModal}>
         <Flex marginX="10">
           <article>
-            <div>
-              <Text variant="h5">{props.blog.title}</Text>
-              <Flex alignItems="center">
-                <time dateTime={props.blog.date}>
-                  <Text>{new Date(props.blog.date).toLocaleDateString()}</Text>
-                </time>
-                <styled.span aria-hidden marginInline={2}>
-                  •
-                </styled.span>
-                <Text>{props.blog.readingTime.text}</Text>
-              </Flex>
-            </div>
+            <Flex alignItems="center">
+              <Link href="/projects">
+                <Text
+                  variant="h6"
+                  className={css({ textDecoration: 'underline' })}>
+                  Projects
+                </Text>
+              </Link>
+              <Text variant="h6">/</Text>
+              <Text variant="h6"> {props.project.title}</Text>
+            </Flex>
             <Flex marginTop={10} flexDirection="column">
               <Glassy flexDirection="column" padding="8px">
                 <Component components={MDXComponents} />

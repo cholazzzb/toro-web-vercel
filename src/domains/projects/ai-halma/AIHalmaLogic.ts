@@ -258,12 +258,12 @@ export const getBestMove = (board: Board, playerIdx: PlayerIdx) => {
     .map((position) => {
       const jumpMoves = getLegalJumpMoves(board, playerIdx, position);
       const stepMoves = getLegalStepMoves(board, playerIdx, position);
-      const allMoves= [...jumpMoves, ...stepMoves];
+      const allMoves = [...jumpMoves, ...stepMoves];
       if (allMoves.length > 0) {
         return getMostGreedyMove(allMoves, curTargetPosition);
       }
       return undefined;
     })
-    .filter((pbm) =>!!pbm) as Array<Move>;
+    .filter((pbm) => !!pbm) as Array<Move>;
   return getMostGreedyMove(piecesBestMove, curTargetPosition);
 };

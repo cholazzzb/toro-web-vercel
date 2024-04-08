@@ -54,7 +54,7 @@ const Home: NextPage = () => {
               </Flex>
             </Flex>
             <Flex direction="column">
-              <Text size="lg">Hi, I&apos; m Nic!</Text>
+              <Text variant="h4">Hi, I&apos; m Nic!</Text>
               <Text>Software Engineer</Text>
             </Flex>
           </Glassy>
