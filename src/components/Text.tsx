@@ -10,9 +10,15 @@ type TextProps = PropsWithChildren<
       HTMLParagraphElement
     >
 >;
-export function Text({ children, className, variant, ...props }: TextProps) {
+export function Text({
+  children,
+  center,
+  className,
+  variant,
+  ...props
+}: TextProps) {
   return (
-    <p className={cx(text({ variant }), className)} {...props}>
+    <p className={cx(text({ variant, center }), className)} {...props}>
       {children}
     </p>
   );

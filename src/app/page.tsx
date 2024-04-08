@@ -24,7 +24,8 @@ const Home: NextPage = () => {
           height="100%"
           flexDirection="column"
           justifyContent="center"
-          alignItems="center">
+          alignItems="center"
+        >
           <Glassy
             width="300px"
             height="500px"
@@ -33,14 +34,16 @@ const Home: NextPage = () => {
             display="flex"
             flexDirection="column"
             alignItems="center"
-            color="white">
+            color="white"
+          >
             <Flex>
               <Flex
                 width="200px"
                 height="200px"
                 position="relative"
                 overflow="hidden"
-                borderRadius="50%">
+                borderRadius="50%"
+              >
                 <Image
                   src="/images/profile.png"
                   alt="profile"

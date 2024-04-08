@@ -2,6 +2,7 @@
 
 import { Project } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
+import Link from 'next/link';
 import { useCallback, useState, type PropsWithChildren } from 'react';
 import { Glassy } from 'src/components/Glass';
 
@@ -29,18 +30,19 @@ function Content(props: PropsWithChildren<ContentProps>) {
       <Show when={!openModal}>
         <Flex marginX="10">
           <article>
-            <div>
-              <Text variant="h6">{props.project.title}</Text>
-              <Flex alignItems="center">
-                <time dateTime={props.project.date}>
-                  <Text>
-                    {new Date(props.project.date).toLocaleDateString()}
-                  </Text>
-                </time>
-              </Flex>
-            </div>
+            <Flex alignItems="center">
+              <Link href="/projects">
+                <Text
+                  variant="h6"
+                  className={css({ textDecoration: 'underline' })}>
+                  Projects
+                </Text>
+              </Link>
+              <Text variant="h6">/</Text>
+              <Text variant="h6"> {props.project.title}</Text>
+            </Flex>
             <Flex marginTop={10} flexDirection="column">
-              <Glassy className={css({ height: 'full' })}>
+              <Glassy flexDirection="column" padding="8px">
                 <Component components={MDXComponents} />
               </Glassy>
             </Flex>

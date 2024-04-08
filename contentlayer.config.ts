@@ -47,7 +47,11 @@ export const Experiences = defineDocumentType(() => ({
   contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
-    date: { type: 'date', required: true },
+    startDate: { type: 'date', required: true },
+    endDate: { type: 'date', required: true },
+    location: { type: 'string', required: true },
+    role: { type: 'string', required: true },
+    skills: { type: 'string', required: true },
   },
   computedFields,
 }));
@@ -58,7 +62,8 @@ export const Project = defineDocumentType(() => ({
   contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
-    date: { type: 'string', required: true },
+    skills: { type: 'string', required: true },
+    tags: { type: 'list', of: { type: 'string' } },
   },
   computedFields,
 }));

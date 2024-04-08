@@ -1,5 +1,7 @@
 'use client';
 
+import { faClock } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Experiences } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { useCallback, useState, type PropsWithChildren } from 'react';
@@ -9,7 +11,6 @@ import NavButton from 'src/components/NavButton';
 import Show from 'src/components/Show';
 import { Text } from 'src/components/Text';
 import MDXComponents from 'src/components/mdx-components';
-import { css } from 'src/styled-system/css';
 import { Flex } from 'src/styled-system/jsx';
 
 type ContentProps = {
@@ -32,15 +33,37 @@ function Content(props: PropsWithChildren<ContentProps>) {
             <div>
               <Text variant="h6">{props.exp.title}</Text>
               <Flex alignItems="center">
+                <Flex
+                  justifyContent="center"
+                  alignItems="center"
+                  width="30px"
+                  padding="2px"
+                  marginRight="4px"
+                >
+                  <FontAwesomeIcon icon={faClock} />
+                </Flex>
                 <time dateTime={props.exp.startDate}>
                   <Text>
-                    {new Date(props.exp.startDate).toLocaleDateString()}
+                    {new Intl.DateTimeFormat(['en-GB', 'id'], {
+                      month: 'short',
+                      year: 'numeric',
+                    }).format(new Date(props.exp.startDate))}{' '}
+                    -{' '}
+                  </Text>
+                </time>
+                <time dateTime={props.exp.startDate}>
+                  <Text>
+                    {' '}
+                    {new Intl.DateTimeFormat(['en-GB', 'id'], {
+                      month: 'short',
+                      year: 'numeric',
+                    }).format(new Date(props.exp.endDate))}
                   </Text>
                 </time>
               </Flex>
             </div>
             <Flex marginTop={10} flexDirection="column">
-              <Glassy className={css({ height: 'full' })}>
+              <Glassy flexDirection="column" padding="8px">
                 <Component components={MDXComponents} />
               </Glassy>
             </Flex>

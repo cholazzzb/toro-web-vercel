@@ -8,6 +8,7 @@ import { Glassy } from 'src/components/Glass';
 import NavButton from 'src/components/NavButton';
 import Show from 'src/components/Show';
 import { Text } from 'src/components/Text';
+import { Flex } from 'src/styled-system/jsx';
 
 type BlogsProps = {};
 
@@ -20,6 +21,9 @@ function Blogs(_props: PropsWithChildren<BlogsProps>) {
   return (
     <>
       <Show when={!openModal}>
+        <Flex>
+          <Text variant="h1">Blog</Text>
+        </Flex>
         {allBlogs.map((blog) => {
           return (
             <Link href={`/blogs/${blog.slug}`} key={blog._id}>

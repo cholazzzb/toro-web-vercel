@@ -10,7 +10,6 @@ import Link from 'next/link';
 import { PropsWithChildren, useCallback, useState } from 'react';
 
 import { allExperiences } from 'contentlayer/generated';
-import { css } from 'src/styled-system/css';
 import { Flex } from 'src/styled-system/jsx';
 
 import { Glassy } from 'src/components/Glass';
@@ -47,13 +46,22 @@ function Experiences(_props: PropsWithChildren<ExperiencesProps>) {
                   marginInline="30px"
                   marginBlockEnd="15px"
                   borderRadius="7px"
-                  backgroundColor="rgba(255,255,255,0.3)">
+                  backgroundColor="rgba(255,255,255,0.3)"
+                  _hover={{
+                    backgroundColor: 'rgba(255,255,255,0.4)',
+                  }}
+                >
                   <Flex alignItems="center">
-                    <FontAwesomeIcon icon={faClock} />
-                    <Text
-                      className={css({
-                        marginLeft: '4px',
-                      })}>
+                    <Flex
+                      justifyContent="center"
+                      alignItems="center"
+                      width="30px"
+                      padding="2px"
+                      marginRight="4px"
+                    >
+                      <FontAwesomeIcon icon={faClock} />
+                    </Flex>
+                    <Text>
                       {new Intl.DateTimeFormat(['en-GB', 'id'], {
                         month: 'short',
                         year: 'numeric',
@@ -69,16 +77,28 @@ function Experiences(_props: PropsWithChildren<ExperiencesProps>) {
                   </Flex>
 
                   <Flex alignItems="center">
-                    <FontAwesomeIcon icon={faBuilding} />
-                    <Text className={css({ marginLeft: '4px' })}>
-                      {exp.title}
-                    </Text>
+                    <Flex
+                      justifyContent="center"
+                      alignItems="center"
+                      width="30px"
+                      padding="2px"
+                      marginRight="4px"
+                    >
+                      <FontAwesomeIcon icon={faBuilding} />
+                    </Flex>
+                    <Text>{exp.title}</Text>
                   </Flex>
                   <Flex alignItems="center">
-                    <FontAwesomeIcon icon={faLaptopCode} />
-                    <Text className={css({ marginLeft: '4px' })}>
-                      {exp.role}
-                    </Text>
+                    <Flex
+                      justifyContent="center"
+                      alignItems="center"
+                      width="30px"
+                      padding="2px"
+                      marginRight="4px"
+                    >
+                      <FontAwesomeIcon icon={faLaptopCode} />
+                    </Flex>
+                    <Text>{exp.role}</Text>
                   </Flex>
                 </Glassy>
               </Link>

@@ -12,7 +12,8 @@ export function Button(props: ButtonProps) {
   return (
     <PureGlassy
       className={button(restProps)}
-      onClick={props.disable ? () => {} : onClick}>
+      onClick={props.disable ? () => {} : onClick}
+    >
       {children}
     </PureGlassy>
   );
