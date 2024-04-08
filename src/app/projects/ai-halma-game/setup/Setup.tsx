@@ -45,13 +45,15 @@ export function Setup(props: Props) {
           <SelectPlayerTypeButton
             kind={1}
             active={players[0] === 'Human'}
-            onClick={createPlayerHandler(1, 'Human')}>
+            onClick={createPlayerHandler(1, 'Human')}
+          >
             Human
           </SelectPlayerTypeButton>
           <SelectPlayerTypeButton
             kind={1}
             active={players[0] === 'AI'}
-            onClick={createPlayerHandler(1, 'AI')}>
+            onClick={createPlayerHandler(1, 'AI')}
+          >
             AI
           </SelectPlayerTypeButton>
         </div>
@@ -63,13 +65,15 @@ export function Setup(props: Props) {
           <SelectPlayerTypeButton
             kind={2}
             active={players[1] === 'Human'}
-            onClick={createPlayerHandler(2, 'Human')}>
+            onClick={createPlayerHandler(2, 'Human')}
+          >
             Human
           </SelectPlayerTypeButton>
           <SelectPlayerTypeButton
             kind={2}
             active={players[1] === 'AI'}
-            onClick={createPlayerHandler(2, 'AI')}>
+            onClick={createPlayerHandler(2, 'AI')}
+          >
             AI
           </SelectPlayerTypeButton>
         </div>

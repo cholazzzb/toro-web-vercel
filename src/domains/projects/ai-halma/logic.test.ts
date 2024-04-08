@@ -1,12 +1,12 @@
 import { EMoveType } from './@enum';
 import { CInitBoard4Players } from './constants';
 import {
-    calcDisVec,
-    isFinished,
-    isInsideBoard,
-    isSquareEmpty,
-    isValidMove,
-    movePiece,
+  calcDisVec,
+  isFinished,
+  isInsideBoard,
+  isSquareEmpty,
+  isValidMove,
+  movePiece,
 } from './logic';
 
 describe('test calcDisVec function', () => {
