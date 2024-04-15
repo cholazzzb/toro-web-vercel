@@ -34,7 +34,7 @@ function NavButton(props: PropsWithChildren<NavButtonProps>) {
           justifyContent="center">
           <Flex justifyContent="center" marginRight={10}>
             <Link href="/">
-              <RoundButton>
+              <RoundButton onClick={props.onClick}>
                 <FontAwesomeIcon icon={faHome} height={25} width={25} />
               </RoundButton>
               <Text center>Home</Text>
@@ -43,7 +43,7 @@ function NavButton(props: PropsWithChildren<NavButtonProps>) {
 
           <Flex justifyContent="center" marginRight={10}>
             <Link href="/projects">
-              <RoundButton>
+            <RoundButton onClick={props.onClick}>
                 <FontAwesomeIcon icon={faPenNib} height={25} width={25} />
               </RoundButton>
               <Text center>Projects</Text>
@@ -52,7 +52,7 @@ function NavButton(props: PropsWithChildren<NavButtonProps>) {
 
           <Flex justifyContent="center" alignItems="center">
             <Link href="/blogs">
-              <RoundButton>
+            <RoundButton onClick={props.onClick}>
                 <FontAwesomeIcon icon={faPenNib} height={25} width={25} />
               </RoundButton>
               <Text center>Blog</Text>

@@ -1,6 +1,6 @@
 'use client';
 
-import { faFeather } from '@fortawesome/free-solid-svg-icons';
+import { faFeather, faLaptopCode } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { PropsWithChildren, useCallback, useState } from 'react';
@@ -40,18 +40,34 @@ function Projects(_props: PropsWithChildren<ExperiencesProps>) {
                   marginBlockEnd="15px"
                   borderRadius="7px"
                   backgroundColor="rgba(255,255,255,0.3)">
-                  <Flex alignItems="center"></Flex>
-
                   <Flex alignItems="center">
+                    <Text variant="h4">{proj.title}</Text>
+                  </Flex>
+                  <Flex>
                     <Flex
                       justifyContent="center"
-                      alignItems="center"
                       width="30px"
-                      padding="2px"
+                      paddingX="2px"
+                      paddingTop="5px"
                       marginRight="4px">
                       <FontAwesomeIcon icon={faFeather} />
                     </Flex>
-                    <Text>{proj.title}</Text>
+                    <Flex>
+                      <Text>{proj.description}</Text>
+                    </Flex>
+                  </Flex>
+                  <Flex>
+                    <Flex
+                      justifyContent="center"
+                      width="30px"
+                      paddingX="2px"
+                      paddingTop="4px"
+                      marginRight="4px">
+                      <FontAwesomeIcon icon={faLaptopCode} />
+                    </Flex>
+                    <Flex>
+                      <Text>{proj.skills}</Text>
+                    </Flex>
                   </Flex>
                 </Glassy>
               </Link>

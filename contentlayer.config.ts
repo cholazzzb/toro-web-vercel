@@ -62,6 +62,7 @@ export const Project = defineDocumentType(() => ({
   contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
+    description: { type: 'string', required: true },
     skills: { type: 'string', required: true },
     tags: { type: 'list', of: { type: 'string' } },
   },
