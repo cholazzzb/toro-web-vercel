@@ -93,7 +93,7 @@ export function Review(props: Props) {
                       </Text>
                     </Flex>
                   </Flex>
-                  <Flex grow={1} onClick={onClickMove2}>
+                  <Flex grow={1} onClick={move2 && onClickMove2}>
                     <Flex
                       padding="4px"
                       backgroundColor={
