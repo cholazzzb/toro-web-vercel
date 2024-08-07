@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { PropsWithChildren } from 'react';
 
+import { css } from 'src/styled-system/css';
 import { Flex } from 'src/styled-system/jsx';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from './Breadcrumb';
 import { Glassy } from './Glass';
@@ -43,7 +44,7 @@ function NavButton(props: PropsWithChildren<NavButtonProps>) {
 
           <Flex justifyContent="center" marginRight={10}>
             <Link href="/projects">
-            <RoundButton onClick={props.onClick}>
+              <RoundButton onClick={props.onClick}>
                 <FontAwesomeIcon icon={faPenNib} height={25} width={25} />
               </RoundButton>
               <Text center>Projects</Text>
@@ -52,7 +53,7 @@ function NavButton(props: PropsWithChildren<NavButtonProps>) {
 
           <Flex justifyContent="center" alignItems="center">
             <Link href="/blogs">
-            <RoundButton onClick={props.onClick}>
+              <RoundButton onClick={props.onClick}>
                 <FontAwesomeIcon icon={faPenNib} height={25} width={25} />
               </RoundButton>
               <Text center>Blog</Text>
@@ -70,8 +71,12 @@ function NavButton(props: PropsWithChildren<NavButtonProps>) {
         width="100%"
         paddingInline="28px">
         <Flex
+          className={css({
+            animation: `movingBg 5s ease infinite`,
+          })}
           borderRadius="50%"
-          backgroundColor="rgba(255,255,255,0.1)"
+          background="linear-gradient(-45deg, #3fa185, #91bb4e, #a89438, #a66d1d)"
+          backgroundSize="70% 70%"
           color="white"
           alignItems="center"
           justifyContent="center">
