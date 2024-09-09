@@ -59,3 +59,13 @@ export function match<T, U>(
  *
  * console.log(finalValue); // Output: 50
  */
+
+type Fn = (...args: any[]) => any;
+
+export function pipe(...fns: Fn[]) {
+  return function (...args: any[]) {
+    return fns.reduce((result, fn) => {
+      return [fn(...result)];
+    }, args)[0];
+  };
+}

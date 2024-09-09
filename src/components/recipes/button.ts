@@ -12,6 +12,7 @@ export const buttonRecipe = defineRecipe({
     borderRadius: '4px',
     justifyContent: 'center',
     alignItems: 'center',
+    cursor: 'pointer',
   },
   variants: {
     shape: {

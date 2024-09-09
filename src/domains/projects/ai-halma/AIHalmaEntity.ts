@@ -26,6 +26,16 @@ export type Position = {
   y: number;
 };
 
+/**
+ * @description
+ * - x: horizontal axis or rowIdx
+ * - z: vertical axis or colIdx
+ */
+export type SplinePosition = {
+  x: number;
+  z: number;
+};
+
 export type PositionDistance = Position;
 
 /**
